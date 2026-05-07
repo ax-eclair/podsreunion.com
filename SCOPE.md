@@ -127,10 +127,84 @@ Targeting ~10 hours/week of work, 3.5 months from skeleton to launch.
 
 ## Validation phase (parallel, ongoing)
 
-- Landing page live at podsreunion.com
-- Email waitlist via Formspree
-- Outreach via Kleinanzeigen DMs
-- Goal: 5 user interviews (10-min calls) by end of week 2 to inform listing-page design
+Two parallel tracks for collecting demand signal before the marketplace MVP is built.
+
+### Track 1 — Direct outreach
+
+- Landing page live at podsreunion.com (waitlist via Formspree)
+- DM outreach to Kleinanzeigen sellers/buyers, ~10–15/day max, German message
+- Goal: 5 user interviews (10-min calls) to inform listing-page design
+
+### Track 2 — Meta ad funnel at `/lost/`
+
+A second, ad-optimized page at `podsreunion.com/lost/` for paid Meta ad traffic. Produces a **segmented waitlist** (model + part lost) and validates buying intent at scale.
+
+#### Site structure with the new funnel
+
+```
+/                  organic landing (waitlist signup)
+/lost/             ad-targeted funnel (this section)
+/impressum.html
+/datenschutz.html  (must be updated before /lost/ goes live)
+```
+
+#### Page flow — 4 steps, mobile-first
+
+1. **Model** — six big buttons: AirPods 1./2./3./4. Generation, AirPods Pro 1./2. Generation, AirPods Max. A "Nicht sicher welche Generation?" link opens a helper modal.
+2. **Part** — Linker AirPod / Rechter AirPod / Ladecase.
+3. **Email** — single email field, no other fields.
+4. **Thank you** — static confirmation, optional "share with a friend" link.
+
+#### UX rules
+
+- Single tap = advance (no "Next" button)
+- Back arrow on steps 2–3
+- Progress dots at top
+- One thing per screen — no nav/footer mid-flow
+- 64px tap targets
+- Same visual DNA as the main site (cream bg, dark text, coral accent, AirPods illustrations)
+
+#### Tracking stack
+
+| Tool | Purpose | Where data lives |
+|------|---------|-------------------|
+| Meta Pixel | Feeds Meta's ad algorithm so ad spend optimizes toward real conversions | Meta (US) |
+| PostHog (eu.posthog.com) | Funnel/drop-off analysis, session replay, custom events | EU servers |
+| Klaro | Cookie consent banner — required by TTDSG before either tool fires | Self-hosted JS |
+
+#### Events fired (identical on both Pixel and PostHog)
+
+| Step | Event | Properties |
+|------|-------|------------|
+| Page load | `page_view` | utm_source, utm_campaign, utm_content |
+| Model picked | `model_selected` | model |
+| Part picked | `part_selected` | model, part |
+| Email submitted | `lead_submitted` | model, part, email |
+| Thank-you shown | `lead_thank_you` | model, part |
+
+The funnel from `page_view` → `lead_submitted` is the ad's real conversion rate.
+
+#### Form submission
+
+- **New Formspree endpoint** dedicated to `/lost/` (keeps the data stream clean, separate from the organic waitlist).
+- Captures: email, model, part, UTM properties as hidden fields.
+
+#### UTM convention
+
+```
+podsreunion.com/lost/?utm_source=meta&utm_campaign=lost_v1&utm_content=variant_a
+```
+
+PostHog and Meta Pixel both auto-capture UTMs.
+
+#### Pre-build dependencies
+
+Before the `/lost/` page can be built and shipped:
+
+1. PostHog account at eu.posthog.com — project API key
+2. Meta Pixel ID from Meta Ads Manager
+3. New Formspree endpoint for `/lost/` form submissions
+4. Update `datenschutz.html` to disclose Meta Pixel (US transfer, EU-US DPF) and PostHog (EU-hosted), and explain the cookie consent UI
 
 ## Reference
 
