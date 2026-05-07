@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PodsReunion — Find the matching half of your AirPods</title>
+  <meta name="description" content="A marketplace for orphan AirPods. Find the matching left, right, or case — verified, unlocked, sustainable.">
+  <meta property="og:title" content="PodsReunion — Find the matching half of your AirPods">
+  <meta property="og:description" content="A marketplace for orphan AirPods. Find the matching left, right, or case — verified, unlocked, sustainable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://podsreunion.com">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-pods" aria-hidden="true">
+    <svg width="0" height="0" style="position:absolute" focusable="false" aria-hidden="true">
+      <defs>
+        <symbol id="airpod" viewBox="0 0 50 85">
+          <circle cx="25" cy="20" r="18" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
+          <rect x="17" y="30" width="16" height="50" rx="8" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
+          <circle cx="25" cy="20" r="3" fill="#dfe1e3"/>
+        </symbol>
+        <symbol id="podcase" viewBox="0 0 70 56">
+          <rect x="3" y="3" width="64" height="50" rx="16" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
+          <line x1="3" y1="24" x2="67" y2="24" stroke="#c8cacd" stroke-width="1"/>
+          <circle cx="35" cy="44" r="2.5" fill="#c8cacd"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="pod" style="top:5%; left:6%; --rot:-18deg; --delay:0s; --dur:7s;">
+      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
+    </div>
+    <div class="pod" style="top:9%; right:8%; --rot:22deg; --delay:1.2s; --dur:8s;">
+      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
+    </div>
+    <div class="pod" style="top:38%; left:3%; --rot:32deg; --delay:2.4s; --dur:9s;">
+      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
+    </div>
+    <div class="pod" style="top:48%; right:4%; --rot:-28deg; --delay:0.6s; --dur:7.5s;">
+      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
+    </div>
+    <div class="pod" style="bottom:10%; left:7%; --rot:-12deg; --delay:1.8s; --dur:8.5s;">
+      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
+    </div>
+    <div class="pod" style="bottom:14%; right:10%; --rot:18deg; --delay:3s; --dur:7s;">
+      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
+    </div>
+    <div class="pod pod-small" style="top:22%; left:40%; --rot:55deg; --delay:1s; --dur:8s;">
+      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
+    </div>
+    <div class="pod pod-small" style="top:72%; left:35%; --rot:-50deg; --delay:2.2s; --dur:9s;">
+      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
+    </div>
+  </div>
+
+  <header>
+    <a href="/" class="brand">
+      <img src="logo.png" alt="" class="brand-logo" width="40" height="40">
+      <span>PodsReunion</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Lost one AirPod?</h1>
+      <p class="subhead">Find the matching part instead of paying for a new pair.</p>
+    </section>
+
+    <section class="benefits">
+      <ul>
+        <li><strong>Cheaper</strong> than a replacement from Apple</li>
+        <li><strong>Verified unlock</strong> — no surprises from previous owners</li>
+        <li><strong>Sustainable</strong> — gives orphan AirPods a second life</li>
+      </ul>
+    </section>
+
+    <section class="signup">
+      <div data-fs-success class="form-message form-success"></div>
+      <div data-fs-error class="form-message form-error"></div>
+
+      <form id="signup-form" action="https://formspree.io/f/mjglozeq" method="POST">
+        <label for="email" class="visually-hidden">Email address</label>
+        <input type="email" id="email" name="email" data-fs-field placeholder="your@email.com" required>
+        <button type="submit" data-fs-submit-btn>Notify me</button>
+      </form>
+      <span data-fs-error="email" class="field-error"></span>
+      <p class="note">Be the first to know when we launch. No spam.</p>
+    </section>
+
+    <section class="how">
+      <h2>How it works</h2>
+      <ol>
+        <li>Tell us what part you have or need</li>
+        <li>We match you with the right person</li>
+        <li>They unlock it from Find My — you ship and pay safely</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PodsReunion &middot; <a href="impressum.html">Legal Notice</a> &middot; <a href="datenschutz.html">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#signup-form', formId: 'mjglozeq' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
