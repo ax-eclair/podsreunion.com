@@ -128,25 +128,105 @@
       <button class="full-action" type="button">Show compatible listings</button>
     </section>
 
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
       <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
       <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
-      <p class="modal-step">Seller placeholder</p>
+      <p class="modal-step" data-seller-step-label>Seller flow 1 of 3</p>
       <h2 id="seller-title">What do you want to sell?</h2>
-      <p class="modal-copy">This is the future guided publishing flow for POD-20.</p>
+      <p class="modal-copy" data-seller-step-copy>Select one or more parts. You can add trust badges after publishing.</p>
 
-      <div class="part-options part-options-multi" aria-label="Parts to sell">
-        <button type="button" aria-pressed="false">Left AirPod</button>
-        <button type="button" aria-pressed="false">Right AirPod</button>
-        <button type="button" aria-pressed="false">Charging case</button>
+      <div class="seller-progress" aria-hidden="true">
+        <span class="is-active" data-progress-step="1"></span>
+        <span data-progress-step="2"></span>
+        <span data-progress-step="3"></span>
       </div>
 
-      <div class="placeholder-field">
-        <span>Next placeholder step</span>
-        <strong>Photos, model number, condition, and verification badges.</strong>
+      <div class="seller-step is-active" data-seller-step="1">
+        <div class="seller-part-grid" aria-label="Parts to sell">
+          <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="left">
+            <span class="seller-selected-mark" aria-hidden="true">✓</span>
+            <span class="seller-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/left.png" alt="">
+            </span>
+            <span>
+              <strong>Left AirPod</strong>
+              <small>Single left earbud</small>
+            </span>
+          </button>
+          <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="right">
+            <span class="seller-selected-mark" aria-hidden="true">✓</span>
+            <span class="seller-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+            </span>
+            <span>
+              <strong>Right AirPod</strong>
+              <small>Single right earbud</small>
+            </span>
+          </button>
+          <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="case">
+            <span class="seller-selected-mark" aria-hidden="true">✓</span>
+            <span class="seller-part-image">
+              <img src="assets/airpods/cases/web/A2968-magsafe-lightning.png" alt="">
+            </span>
+            <span>
+              <strong>Charging case</strong>
+              <small>Case only</small>
+            </span>
+          </button>
+        </div>
+
+        <div class="seller-note">
+          <strong>Publish first, verify later.</strong>
+          <span>Find My removal is not required here. It can become a trust badge once a buyer is interested.</span>
+        </div>
       </div>
 
-      <button class="full-action" type="button">Continue</button>
+      <div class="seller-step" data-seller-step="2" hidden>
+        <div class="selected-summary" data-selected-summary></div>
+        <div class="seller-detail-list" data-seller-detail-list></div>
+      </div>
+
+      <div class="seller-step" data-seller-step="3" hidden>
+        <div class="listing-form">
+          <label>
+            <span>Asking price</span>
+            <input type="text" inputmode="decimal" placeholder="e.g. 49 EUR">
+          </label>
+          <label>
+            <span>Location</span>
+            <input type="text" placeholder="Berlin, Germany">
+          </label>
+          <label>
+            <span>Contact email</span>
+            <input type="email" placeholder="you@example.com">
+          </label>
+        </div>
+
+        <div class="seller-toggle-row">
+          <label>
+            <input type="checkbox">
+            <span>Shipping is possible</span>
+          </label>
+          <label>
+            <input type="checkbox">
+            <span>Local handoff is possible</span>
+          </label>
+        </div>
+
+        <div class="badge-preview">
+          <span>Listing badges after review</span>
+          <div>
+            <strong>Photos complete</strong>
+            <strong>Cleaning confirmed</strong>
+            <strong>Find My removed later</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="seller-actions">
+        <button class="secondary-action seller-secondary" type="button" data-seller-prev hidden>Back</button>
+        <button class="full-action seller-next" type="button" data-seller-next disabled>Continue</button>
+      </div>
     </section>
   </div>
 
@@ -156,7 +236,61 @@
     const pathButtons = document.querySelectorAll('[data-open-path]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
-    const multiSelectButtons = document.querySelectorAll('.part-options-multi button');
+    const sellerStepLabel = document.querySelector('[data-seller-step-label]');
+    const sellerStepCopy = document.querySelector('[data-seller-step-copy]');
+    const sellerModal = document.querySelector('[data-modal="seller"]');
+    const sellerSteps = document.querySelectorAll('[data-seller-step]');
+    const sellerProgressSteps = document.querySelectorAll('[data-progress-step]');
+    const sellerPartButtons = document.querySelectorAll('[data-seller-part]');
+    const sellerDetailList = document.querySelector('[data-seller-detail-list]');
+    const selectedSummary = document.querySelector('[data-selected-summary]');
+    const sellerPrevButton = document.querySelector('[data-seller-prev]');
+    const sellerNextButton = document.querySelector('[data-seller-next]');
+    const customSelects = new Set();
+    let sellerStep = 1;
+    const selectedSellerParts = new Set();
+
+    const sellerPartData = {
+      left: {
+        title: 'Left AirPod',
+        image: 'assets/airpods/earbuds/airpods-pro-2/left.png',
+        helper: 'The model number is printed on the stem. Take a clear close-up before moving on.',
+        shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
+      },
+      right: {
+        title: 'Right AirPod',
+        image: 'assets/airpods/earbuds/airpods-pro-2/right.png',
+        helper: 'The model number is printed on the stem. Take a clear close-up before moving on.',
+        shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
+      },
+      case: {
+        title: 'Charging case',
+        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
+        helper: 'The model number is inside the lid. Open the case and photograph the inside clearly.',
+        shots: ['Front closed', 'Back hinge', 'Inside open', 'Charging port', 'Model number', 'LED on', 'Charging proof']
+      }
+    };
+
+    const sellerStepContent = {
+      1: {
+        label: 'Seller flow 1 of 3',
+        title: 'What do you want to sell?',
+        copy: 'Select one or more parts. You can add trust badges after publishing.',
+        next: 'Continue'
+      },
+      2: {
+        label: 'Seller flow 2 of 3',
+        title: 'Add model and photos',
+        copy: 'Each selected part gets its own model check and photo checklist.',
+        next: 'Listing details'
+      },
+      3: {
+        label: 'Seller flow 3 of 3',
+        title: 'Publish your listing',
+        copy: 'Add the basics now. Stronger verification badges can be completed later.',
+        next: 'Publish listing'
+      }
+    };
 
     function showModal(name) {
       modalLayer.classList.add('is-visible');
@@ -166,6 +300,10 @@
         modal.hidden = !isTarget;
         modal.classList.toggle('is-active', isTarget);
       });
+
+      if (name === 'seller') {
+        setSellerStep(1);
+      }
     }
 
     function closeModal() {
@@ -198,14 +336,212 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeModal();
+        closeCustomSelects();
       }
     });
 
-    multiSelectButtons.forEach((button) => {
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.custom-select')) {
+        closeCustomSelects();
+      }
+    });
+
+    function renderSellerDetails() {
+      const selectedParts = Array.from(selectedSellerParts);
+      selectedSummary.innerHTML = selectedParts.map((part) => `<span>${sellerPartData[part].title}</span>`).join('');
+      sellerDetailList.innerHTML = selectedParts.map((part) => {
+        const data = sellerPartData[part];
+        const shotList = data.shots.map((shot, index) => `
+          <label class="photo-slot">
+            <input type="file" accept="image/*">
+            <span>${index + 1}</span>
+            <strong>${shot}</strong>
+          </label>
+        `).join('');
+
+        return `
+          <article class="seller-detail-card">
+            <div class="seller-detail-head">
+              <img src="${data.image}" alt="">
+              <div>
+                <span class="modal-step">${data.title}</span>
+                <h3>${data.title} details</h3>
+                <p>${data.helper}</p>
+              </div>
+            </div>
+
+            <div class="seller-model-grid">
+              <label>
+                <span>AirPods model</span>
+                <select data-custom-select>
+                  <option>AirPods Pro 2</option>
+                  <option>AirPods Pro 1</option>
+                  <option>AirPods 4</option>
+                  <option>AirPods 3</option>
+                  <option>AirPods 2</option>
+                  <option>I am not sure</option>
+                </select>
+              </label>
+              <label>
+                <span>Model number</span>
+                <input type="text" placeholder="e.g. A2699">
+              </label>
+              <label>
+                <span>Condition</span>
+                <select data-custom-select>
+                  <option>Good</option>
+                  <option>Like new</option>
+                  <option>Used</option>
+                  <option>Damaged</option>
+                  <option>Unknown</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="photo-checklist">
+              ${shotList}
+            </div>
+
+            <label class="cleaning-check">
+              <input type="checkbox">
+              <span>I cleaned this part before publishing.</span>
+            </label>
+          </article>
+        `;
+      }).join('');
+
+      enhanceCustomSelects(sellerDetailList);
+    }
+
+    function closeCustomSelects(except) {
+      customSelects.forEach((control) => {
+        if (control !== except) {
+          control.classList.remove('is-open');
+          control.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    function enhanceCustomSelects(root = document) {
+      root.querySelectorAll('select[data-custom-select]:not([data-enhanced])').forEach((select) => {
+        select.dataset.enhanced = 'true';
+        select.classList.add('native-select');
+
+        const control = document.createElement('div');
+        control.className = 'custom-select';
+
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'custom-select-trigger';
+        trigger.setAttribute('aria-haspopup', 'listbox');
+        trigger.setAttribute('aria-expanded', 'false');
+
+        const value = document.createElement('span');
+        value.textContent = select.options[select.selectedIndex]?.textContent || '';
+
+        const chevron = document.createElement('span');
+        chevron.className = 'custom-select-chevron';
+        chevron.setAttribute('aria-hidden', 'true');
+        chevron.textContent = 'v';
+
+        trigger.append(value, chevron);
+
+        const list = document.createElement('div');
+        list.className = 'custom-select-list';
+        list.setAttribute('role', 'listbox');
+
+        Array.from(select.options).forEach((option, index) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'custom-select-option';
+          item.setAttribute('role', 'option');
+          item.setAttribute('aria-selected', String(index === select.selectedIndex));
+          item.textContent = option.textContent;
+
+          item.addEventListener('click', () => {
+            select.selectedIndex = index;
+            value.textContent = option.textContent;
+            list.querySelectorAll('.custom-select-option').forEach((optionButton, optionIndex) => {
+              optionButton.setAttribute('aria-selected', String(optionIndex === index));
+            });
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            control.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+
+          list.append(item);
+        });
+
+        trigger.addEventListener('click', () => {
+          const isOpen = control.classList.contains('is-open');
+          closeCustomSelects(control);
+          control.classList.toggle('is-open', !isOpen);
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        control.append(trigger, list);
+        select.insertAdjacentElement('afterend', control);
+        customSelects.add(control);
+      });
+    }
+
+    function setSellerStep(step) {
+      sellerStep = step;
+      const content = sellerStepContent[sellerStep];
+      document.getElementById('seller-title').textContent = content.title;
+      sellerStepLabel.textContent = content.label;
+      sellerStepCopy.textContent = content.copy;
+      sellerNextButton.textContent = content.next;
+      sellerPrevButton.hidden = sellerStep === 1;
+      sellerNextButton.disabled = sellerStep === 1 && selectedSellerParts.size === 0;
+
+      sellerSteps.forEach((stepElement) => {
+        const isActive = Number(stepElement.dataset.sellerStep) === sellerStep;
+        stepElement.hidden = !isActive;
+        stepElement.classList.toggle('is-active', isActive);
+      });
+
+      sellerProgressSteps.forEach((stepElement) => {
+        stepElement.classList.toggle('is-active', Number(stepElement.dataset.progressStep) <= sellerStep);
+      });
+
+      if (sellerStep === 2) {
+        renderSellerDetails();
+      }
+
+      sellerModal.scrollTop = 0;
+    }
+
+    sellerPartButtons.forEach((button) => {
       button.addEventListener('click', () => {
+        const part = button.dataset.sellerPart;
         const isPressed = button.getAttribute('aria-pressed') === 'true';
         button.setAttribute('aria-pressed', String(!isPressed));
+
+        if (isPressed) {
+          selectedSellerParts.delete(part);
+        } else {
+          selectedSellerParts.add(part);
+        }
+
+        sellerNextButton.disabled = sellerStep === 1 && selectedSellerParts.size === 0;
       });
+    });
+
+    sellerNextButton.addEventListener('click', () => {
+      if (sellerStep < 3) {
+        setSellerStep(sellerStep + 1);
+        return;
+      }
+
+      sellerNextButton.textContent = 'Listing ready for review';
+      sellerNextButton.disabled = true;
+    });
+
+    sellerPrevButton.addEventListener('click', () => {
+      if (sellerStep > 1) {
+        setSellerStep(sellerStep - 1);
+      }
     });
   </script>
 </body>
