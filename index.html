@@ -3,111 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PodsReunion — Find the matching half of your AirPods</title>
-  <meta name="description" content="A marketplace for orphan AirPods. Find the matching left, right, or case — verified, unlocked, sustainable.">
-  <meta property="og:title" content="PodsReunion — Find the matching half of your AirPods">
-  <meta property="og:description" content="A marketplace for orphan AirPods. Find the matching left, right, or case — verified, unlocked, sustainable.">
+  <title>PodsReunion | Buy or sell single AirPods parts</title>
+  <meta name="description" content="A simple marketplace for buying or selling single AirPods, charging cases, and compatible replacement parts.">
+  <meta property="og:title" content="PodsReunion | Buy or sell single AirPods parts">
+  <meta property="og:description" content="Find or sell a single AirPod, a charging case, or a compatible replacement part.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://podsreunion.com">
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" type="image/png" href="assets/favicons/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="assets/favicons/apple-icon-180x180.png">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="bg-pods" aria-hidden="true">
-    <svg width="0" height="0" style="position:absolute" focusable="false" aria-hidden="true">
-      <defs>
-        <symbol id="airpod" viewBox="0 0 50 85">
-          <circle cx="25" cy="20" r="18" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
-          <rect x="17" y="30" width="16" height="50" rx="8" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
-          <circle cx="25" cy="20" r="3" fill="#dfe1e3"/>
-        </symbol>
-        <symbol id="podcase" viewBox="0 0 70 56">
-          <rect x="3" y="3" width="64" height="50" rx="16" fill="#fff" stroke="#c8cacd" stroke-width="1.5"/>
-          <line x1="3" y1="24" x2="67" y2="24" stroke="#c8cacd" stroke-width="1"/>
-          <circle cx="35" cy="44" r="2.5" fill="#c8cacd"/>
-        </symbol>
-      </defs>
-    </svg>
-
-    <div class="pod" style="top:5%; left:6%; --rot:-18deg; --delay:0s; --dur:7s;">
-      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
-    </div>
-    <div class="pod" style="top:9%; right:8%; --rot:22deg; --delay:1.2s; --dur:8s;">
-      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
-    </div>
-    <div class="pod" style="top:38%; left:3%; --rot:32deg; --delay:2.4s; --dur:9s;">
-      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
-    </div>
-    <div class="pod" style="top:48%; right:4%; --rot:-28deg; --delay:0.6s; --dur:7.5s;">
-      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
-    </div>
-    <div class="pod" style="bottom:10%; left:7%; --rot:-12deg; --delay:1.8s; --dur:8.5s;">
-      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
-    </div>
-    <div class="pod" style="bottom:14%; right:10%; --rot:18deg; --delay:3s; --dur:7s;">
-      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
-    </div>
-    <div class="pod pod-small" style="top:22%; left:40%; --rot:55deg; --delay:1s; --dur:8s;">
-      <svg viewBox="0 0 50 85"><use href="#airpod"/></svg>
-    </div>
-    <div class="pod pod-small" style="top:72%; left:35%; --rot:-50deg; --delay:2.2s; --dur:9s;">
-      <svg viewBox="0 0 70 56"><use href="#podcase"/></svg>
-    </div>
-  </div>
-
-  <header>
-    <a href="/" class="brand">
-      <img src="logo.png" alt="" class="brand-logo" width="40" height="40">
-      <span>PodsReunion</span>
+<body class="has-modal">
+  <header class="site-header" aria-label="Primary">
+    <a class="brand" href="/" aria-label="PodsReunion home">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="assets/logo/logo-master.svg" alt="">
+      </span>
+      <span class="brand-name">podsreunion.com</span>
     </a>
+
+    <nav class="header-nav" aria-label="Account placeholders">
+      <a href="#" aria-disabled="true">Messages</a>
+      <a href="#" aria-disabled="true">Orders</a>
+      <a href="#" aria-disabled="true">Listings</a>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Lost one AirPod?</h1>
-      <p class="subhead">Find the matching part instead of paying for a new pair.</p>
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="eyebrow">PodsReunion marketplace</p>
+      <h1 id="intro-title">Find the missing part, or give yours a second life.</h1>
+      <p class="intro-copy">
+        A focused place for single AirPods, left and right earbuds, and charging cases.
+      </p>
+
+      <div class="intro-actions" aria-label="Start">
+        <button class="primary-action" type="button" data-open-path="buyer">I need an AirPod or case</button>
+        <button class="secondary-action" type="button" data-open-path="seller">I want to sell one</button>
+      </div>
     </section>
 
-    <section class="benefits">
-      <ul>
-        <li><strong>Cheaper</strong> than a replacement from Apple</li>
-        <li><strong>Verified unlock</strong> — no surprises from previous owners</li>
-        <li><strong>Sustainable</strong> — gives orphan AirPods a second life</li>
-      </ul>
-    </section>
+    <section class="market-preview" aria-label="Marketplace preview">
+      <div class="preview-panel preview-panel-large">
+        <div class="preview-copy">
+          <span class="panel-kicker">Available soon</span>
+          <h2>AirPods Pro 2 parts</h2>
+          <p>Compatible listings will appear here once the marketplace is connected.</p>
+        </div>
+        <img src="assets/airpods/products/web/airpods-pro-2-with-case-front.png" alt="AirPods Pro with charging case">
+      </div>
 
-    <section class="signup">
-      <div data-fs-success class="form-message form-success"></div>
-      <div data-fs-error class="form-message form-error"></div>
-
-      <form id="signup-form" action="https://formspree.io/f/mjglozeq" method="POST">
-        <label for="email" class="visually-hidden">Email address</label>
-        <input type="email" id="email" name="email" data-fs-field placeholder="your@email.com" required>
-        <button type="submit" data-fs-submit-btn>Notify me</button>
-      </form>
-      <span data-fs-error="email" class="field-error"></span>
-      <p class="note">Be the first to know when we launch. No spam.</p>
-    </section>
-
-    <section class="how">
-      <h2>How it works</h2>
-      <ol>
-        <li>Tell us what part you have or need</li>
-        <li>We match you with the right person</li>
-        <li>They unlock it from Find My — you ship and pay safely</li>
-      </ol>
+      <div class="preview-grid">
+        <article class="mini-panel">
+          <span class="mini-label">Verified photos</span>
+          <strong>Model and condition badges</strong>
+        </article>
+        <article class="mini-panel">
+          <span class="mini-label">Fast search</span>
+          <strong>Left, right, or charging case</strong>
+        </article>
+        <article class="mini-panel">
+          <span class="mini-label">Lightweight start</span>
+          <strong>No dashboard before you need one</strong>
+        </article>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 PodsReunion &middot; <a href="impressum.html">Legal Notice</a> &middot; <a href="datenschutz.html">Privacy Policy</a></p>
+  <footer class="site-footer">
+    <p>&copy; 2026 PodsReunion</p>
+    <div>
+      <a href="impressum.html">Legal Notice</a>
+      <a href="datenschutz.html">Privacy Policy</a>
+    </div>
   </footer>
 
+  <div class="modal-layer is-visible" data-modal-layer>
+    <section class="modal is-active" role="dialog" aria-modal="true" aria-labelledby="entry-title" data-modal="entry">
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <p class="modal-step">Start</p>
+      <h2 id="entry-title">Are you here to buy or sell?</h2>
+      <p class="modal-copy">Choose the path that fits what you need today.</p>
+
+      <div class="choice-grid">
+        <button class="choice-card" type="button" data-open-path="buyer">
+          <span class="choice-visual">
+            <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+          </span>
+          <span>
+            <strong>I need an AirPod or case</strong>
+            <small>Find compatible listings quickly.</small>
+          </span>
+        </button>
+        <button class="choice-card" type="button" data-open-path="seller">
+          <span class="choice-visual">
+            <img src="assets/airpods/products/web/airpods-3-with-case.png" alt="">
+          </span>
+          <span>
+            <strong>I want to sell one</strong>
+            <small>Publish a part and add trust badges later.</small>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <p class="modal-step">Buyer placeholder</p>
+      <h2 id="buyer-title">Find the part you need</h2>
+      <p class="modal-copy">This is the future fast path for POD-21.</p>
+
+      <div class="part-options" aria-label="Needed part">
+        <button type="button">Left AirPod</button>
+        <button type="button">Right AirPod</button>
+        <button type="button">Charging case</button>
+      </div>
+
+      <div class="placeholder-field">
+        <span>Model selector placeholder</span>
+        <strong>AirPods Pro 2, AirPods 3, AirPods 4...</strong>
+      </div>
+
+      <button class="full-action" type="button">Show compatible listings</button>
+    </section>
+
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <p class="modal-step">Seller placeholder</p>
+      <h2 id="seller-title">What do you want to sell?</h2>
+      <p class="modal-copy">This is the future guided publishing flow for POD-20.</p>
+
+      <div class="part-options part-options-multi" aria-label="Parts to sell">
+        <button type="button" aria-pressed="false">Left AirPod</button>
+        <button type="button" aria-pressed="false">Right AirPod</button>
+        <button type="button" aria-pressed="false">Charging case</button>
+      </div>
+
+      <div class="placeholder-field">
+        <span>Next placeholder step</span>
+        <strong>Photos, model number, condition, and verification badges.</strong>
+      </div>
+
+      <button class="full-action" type="button">Continue</button>
+    </section>
+  </div>
+
   <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#signup-form', formId: 'mjglozeq' });
+    const modalLayer = document.querySelector('[data-modal-layer]');
+    const modals = document.querySelectorAll('[data-modal]');
+    const pathButtons = document.querySelectorAll('[data-open-path]');
+    const closeButtons = document.querySelectorAll('[data-close-modal]');
+    const entryButtons = document.querySelectorAll('[data-show-entry]');
+    const multiSelectButtons = document.querySelectorAll('.part-options-multi button');
+
+    function showModal(name) {
+      modalLayer.classList.add('is-visible');
+      document.body.classList.add('has-modal');
+      modals.forEach((modal) => {
+        const isTarget = modal.dataset.modal === name;
+        modal.hidden = !isTarget;
+        modal.classList.toggle('is-active', isTarget);
+      });
+    }
+
+    function closeModal() {
+      modalLayer.classList.remove('is-visible');
+      document.body.classList.remove('has-modal');
+      modals.forEach((modal) => {
+        modal.classList.remove('is-active');
+        modal.hidden = true;
+      });
+    }
+
+    pathButtons.forEach((button) => {
+      button.addEventListener('click', () => showModal(button.dataset.openPath));
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    entryButtons.forEach((button) => {
+      button.addEventListener('click', () => showModal('entry'));
+    });
+
+    modalLayer.addEventListener('click', (event) => {
+      if (event.target === modalLayer) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    multiSelectButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const isPressed = button.getAttribute('aria-pressed') === 'true';
+        button.setAttribute('aria-pressed', String(!isPressed));
+      });
+    });
   </script>
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
