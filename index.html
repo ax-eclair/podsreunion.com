@@ -107,25 +107,145 @@
       </div>
     </section>
 
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
       <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
       <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
-      <p class="modal-step">Buyer placeholder</p>
+      <p class="modal-step" data-buyer-step-label>Buyer flow 1 of 3</p>
       <h2 id="buyer-title">Find the part you need</h2>
-      <p class="modal-copy">This is the future fast path for POD-21.</p>
+      <p class="modal-copy" data-buyer-step-copy>Start with the missing piece. No account needed to browse.</p>
 
-      <div class="part-options" aria-label="Needed part">
-        <button type="button">Left AirPod</button>
-        <button type="button">Right AirPod</button>
-        <button type="button">Charging case</button>
+      <div class="buyer-progress" aria-hidden="true">
+        <span class="is-active" data-buyer-progress-step="1"></span>
+        <span data-buyer-progress-step="2"></span>
+        <span data-buyer-progress-step="3"></span>
       </div>
 
-      <div class="placeholder-field">
-        <span>Model selector placeholder</span>
-        <strong>AirPods Pro 2, AirPods 3, AirPods 4...</strong>
+      <div class="buyer-step is-active" data-buyer-step="1">
+        <div class="buyer-part-grid" aria-label="Needed part">
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="left">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/left.png" alt="">
+            </span>
+            <span>
+              <strong>Left AirPod</strong>
+              <small>I lost the left earbud.</small>
+            </span>
+          </button>
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="right">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+            </span>
+            <span>
+              <strong>Right AirPod</strong>
+              <small>I lost the right earbud.</small>
+            </span>
+          </button>
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="case">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/cases/web/A2968-magsafe-lightning.png" alt="">
+            </span>
+            <span>
+              <strong>Charging case</strong>
+              <small>I need a compatible case.</small>
+            </span>
+          </button>
+        </div>
       </div>
 
-      <button class="full-action" type="button">Show compatible listings</button>
+      <div class="buyer-step" data-buyer-step="2" hidden>
+        <div class="buyer-model-card">
+          <div>
+            <span class="modal-step">Model check</span>
+            <h3>Which AirPods do you have?</h3>
+            <p>For now, this is a lightweight compatibility placeholder. We will only show listings that should match this model.</p>
+          </div>
+        </div>
+
+        <div class="buyer-model-grid" aria-label="AirPods model">
+          <button class="buyer-model-option" type="button" aria-pressed="true" data-buyer-model="AirPods Pro 1">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-1-with-case.png" alt="">
+            </span>
+            <strong>AirPods Pro 1</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 2">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-2-with-case-front.png" alt="">
+            </span>
+            <strong>AirPods Pro 2</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 3">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-3-with-case-front.png" alt="">
+            </span>
+            <strong>AirPods Pro 3</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 1">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-1-with-case.png" alt="">
+            </span>
+            <strong>AirPods 1</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 2">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-2-with-case.png" alt="">
+            </span>
+            <strong>AirPods 2</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 3">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-3-with-case.png" alt="">
+            </span>
+            <strong>AirPods 3</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-4-with-case.png" alt="">
+            </span>
+            <strong>AirPods 4</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4 ANC">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-4-anc-with-case.png" alt="">
+            </span>
+            <strong>AirPods 4 ANC</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="not-sure">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-2-earbuds.png" alt="">
+            </span>
+            <strong>I am not sure</strong>
+          </button>
+        </div>
+      </div>
+
+      <div class="buyer-step" data-buyer-step="3" hidden>
+        <div class="buyer-selected-part" data-buyer-selected-part></div>
+
+        <div class="empty-results">
+          <span class="modal-step">No listings yet</span>
+          <h3>No compatible part is available right now.</h3>
+          <p>Leave your email and we will notify you when someone lists this part.</p>
+        </div>
+
+        <form class="buyer-request-form" data-buyer-request-form>
+          <label>
+            <span>Email address</span>
+            <input type="email" placeholder="you@example.com" required>
+          </label>
+          <button class="full-action" type="submit">Notify me when available</button>
+        </form>
+
+        <div class="request-success" data-request-success hidden>
+          <strong>Request saved.</strong>
+          <span>This is a prototype confirmation. Later, this will create a real buyer request.</span>
+        </div>
+      </div>
+
+      <div class="buyer-actions">
+        <button class="secondary-action buyer-secondary" type="button" data-buyer-prev hidden>Back</button>
+        <button class="full-action buyer-next" type="button" data-buyer-next disabled>Continue</button>
+      </div>
     </section>
 
     <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
@@ -236,6 +356,18 @@
     const pathButtons = document.querySelectorAll('[data-open-path]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
+    const buyerStepLabel = document.querySelector('[data-buyer-step-label]');
+    const buyerStepCopy = document.querySelector('[data-buyer-step-copy]');
+    const buyerModal = document.querySelector('[data-modal="buyer"]');
+    const buyerSteps = document.querySelectorAll('[data-buyer-step]');
+    const buyerProgressSteps = document.querySelectorAll('[data-buyer-progress-step]');
+    const buyerPartButtons = document.querySelectorAll('[data-buyer-part]');
+    const buyerModelButtons = document.querySelectorAll('[data-buyer-model]');
+    const buyerPrevButton = document.querySelector('[data-buyer-prev]');
+    const buyerNextButton = document.querySelector('[data-buyer-next]');
+    const buyerRequestForm = document.querySelector('[data-buyer-request-form]');
+    const buyerSelectedPart = document.querySelector('[data-buyer-selected-part]');
+    const requestSuccess = document.querySelector('[data-request-success]');
     const sellerStepLabel = document.querySelector('[data-seller-step-label]');
     const sellerStepCopy = document.querySelector('[data-seller-step-copy]');
     const sellerModal = document.querySelector('[data-modal="seller"]');
@@ -247,6 +379,9 @@
     const sellerPrevButton = document.querySelector('[data-seller-prev]');
     const sellerNextButton = document.querySelector('[data-seller-next]');
     const customSelects = new Set();
+    let buyerStep = 1;
+    let selectedBuyerPart = null;
+    let selectedBuyerModel = 'AirPods Pro 1';
     let sellerStep = 1;
     const selectedSellerParts = new Set();
 
@@ -292,6 +427,44 @@
       }
     };
 
+    const buyerStepContent = {
+      1: {
+        label: 'Buyer flow 1 of 3',
+        title: 'Find the part you need',
+        copy: 'Start with the missing piece. No account needed to browse.',
+        next: 'Continue'
+      },
+      2: {
+        label: 'Buyer flow 2 of 3',
+        title: 'Choose your model',
+        copy: 'This keeps results compatible with the AirPods you already have.',
+        next: 'Show compatible listings'
+      },
+      3: {
+        label: 'Buyer flow 3 of 3',
+        title: 'Get notified',
+        copy: 'No matching listing yet. Save a simple request and we will tell you when one appears.',
+        next: 'Done'
+      }
+    };
+
+    function renderBuyerSelectedPart() {
+      if (!selectedBuyerPart) {
+        buyerSelectedPart.innerHTML = '';
+        return;
+      }
+
+      const data = sellerPartData[selectedBuyerPart];
+      buyerSelectedPart.innerHTML = `
+        <img src="${data.image}" alt="">
+        <span>
+          <small>Selected request</small>
+          <strong>${data.title}</strong>
+          <em>${selectedBuyerModel}</em>
+        </span>
+      `;
+    }
+
     function showModal(name) {
       modalLayer.classList.add('is-visible');
       document.body.classList.add('has-modal');
@@ -303,6 +476,10 @@
 
       if (name === 'seller') {
         setSellerStep(1);
+      }
+
+      if (name === 'buyer') {
+        setBuyerStep(1);
       }
     }
 
@@ -374,11 +551,14 @@
               <label>
                 <span>AirPods model</span>
                 <select data-custom-select>
-                  <option>AirPods Pro 2</option>
                   <option>AirPods Pro 1</option>
-                  <option>AirPods 4</option>
-                  <option>AirPods 3</option>
+                  <option>AirPods Pro 2</option>
+                  <option>AirPods Pro 3</option>
+                  <option>AirPods 1</option>
                   <option>AirPods 2</option>
+                  <option>AirPods 3</option>
+                  <option>AirPods 4</option>
+                  <option>AirPods 4 ANC</option>
                   <option>I am not sure</option>
                 </select>
               </label>
@@ -485,6 +665,35 @@
       });
     }
 
+    function setBuyerStep(step) {
+      buyerStep = step;
+      const content = buyerStepContent[buyerStep];
+      document.getElementById('buyer-title').textContent = content.title;
+      buyerStepLabel.textContent = content.label;
+      buyerStepCopy.textContent = content.copy;
+      buyerNextButton.textContent = content.next;
+      buyerPrevButton.hidden = buyerStep === 1;
+      buyerNextButton.hidden = buyerStep === 3;
+      buyerNextButton.disabled = buyerStep === 1 && !selectedBuyerPart;
+      requestSuccess.hidden = true;
+
+      buyerSteps.forEach((stepElement) => {
+        const isActive = Number(stepElement.dataset.buyerStep) === buyerStep;
+        stepElement.hidden = !isActive;
+        stepElement.classList.toggle('is-active', isActive);
+      });
+
+      buyerProgressSteps.forEach((stepElement) => {
+        stepElement.classList.toggle('is-active', Number(stepElement.dataset.buyerProgressStep) <= buyerStep);
+      });
+
+      if (buyerStep === 3) {
+        renderBuyerSelectedPart();
+      }
+
+      buyerModal.scrollTop = 0;
+    }
+
     function setSellerStep(step) {
       sellerStep = step;
       const content = sellerStepContent[sellerStep];
@@ -511,6 +720,43 @@
 
       sellerModal.scrollTop = 0;
     }
+
+    buyerPartButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedBuyerPart = button.dataset.buyerPart;
+        buyerPartButtons.forEach((partButton) => {
+          partButton.setAttribute('aria-pressed', String(partButton === button));
+        });
+        buyerNextButton.disabled = false;
+      });
+    });
+
+    buyerModelButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedBuyerModel = button.dataset.buyerModel;
+        buyerModelButtons.forEach((modelButton) => {
+          modelButton.setAttribute('aria-pressed', String(modelButton === button));
+        });
+      });
+    });
+
+    buyerNextButton.addEventListener('click', () => {
+      if (buyerStep < 3) {
+        setBuyerStep(buyerStep + 1);
+      }
+    });
+
+    buyerPrevButton.addEventListener('click', () => {
+      if (buyerStep > 1) {
+        setBuyerStep(buyerStep - 1);
+      }
+    });
+
+    buyerRequestForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      requestSuccess.hidden = false;
+      buyerRequestForm.reset();
+    });
 
     sellerPartButtons.forEach((button) => {
       button.addEventListener('click', () => {
