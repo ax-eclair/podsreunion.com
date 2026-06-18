@@ -646,19 +646,16 @@
               </label>
             </div>
 
+            <div class="photo-checklist">
+              ${shotList}
+            </div>
+
             <div class="seller-price-panel">
               <label>
                 <span>Price for this ${data.title}</span>
                 <input type="text" inputmode="decimal" placeholder="e.g. ${data.recommendedPrice}" value="${savedPrice}" data-seller-price-input>
               </label>
-              <div class="recommended-price" aria-label="Recommended price">
-                <span>Recommended price</span>
-                <strong>${data.recommendedPrice}</strong>
-              </div>
-            </div>
-
-            <div class="photo-checklist">
-              ${shotList}
+              <p class="recommended-price-hint">Recommended price: ${data.recommendedPrice}</p>
             </div>
 
             <label class="cleaning-check">

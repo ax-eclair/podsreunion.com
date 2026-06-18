@@ -1134,32 +1134,25 @@ body > footer:not(.site-footer) a:hover {
 
 .seller-price-panel {
   margin-top: 14px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.42fr);
-  gap: 10px;
-  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 14px;
 }
 
-.recommended-price {
-  min-height: 42px;
-  padding: 8px 11px;
-  display: grid;
-  align-content: center;
-  gap: 2px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fbfbfa;
+.seller-price-panel label {
+  width: 168px;
 }
 
-.recommended-price span {
+.seller-price-panel input {
+  width: 168px;
+}
+
+.recommended-price-hint {
+  margin-bottom: 11px;
   color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.recommended-price strong {
-  font-size: 1rem;
+  font-size: 0.86rem;
+  line-height: 1.25;
 }
 
 .model-number-field {
@@ -1528,7 +1521,6 @@ body > footer:not(.site-footer) a:hover {
   .buyer-request-form,
   .seller-part-grid,
   .seller-model-grid,
-  .seller-price-panel,
   .listing-form,
   .photo-checklist {
     grid-template-columns: 1fr;
