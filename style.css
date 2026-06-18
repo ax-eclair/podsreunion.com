@@ -365,6 +365,11 @@ body > footer:not(.site-footer) a:hover {
   width: min(760px, 100%);
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) {
+  width: min(960px, calc(100vw - 36px));
+  padding: 18px 20px;
+}
+
 .modal h2 {
   margin-top: 10px;
   padding-right: 44px;
@@ -373,10 +378,24 @@ body > footer:not(.site-footer) a:hover {
   letter-spacing: 0;
 }
 
+.modal:has(.modal-back) h2 {
+  margin-top: 18px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) h2 {
+  margin-top: 14px;
+  font-size: clamp(1.85rem, 3vw, 2.45rem);
+}
+
 .modal-copy {
   margin-top: 12px;
   color: var(--muted);
   font-size: 1rem;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .modal-copy {
+  margin-top: 7px;
+  font-size: 0.94rem;
 }
 
 .icon-button {
@@ -391,8 +410,6 @@ body > footer:not(.site-footer) a:hover {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 247, 246, 0.88));
   color: var(--muted);
   cursor: pointer;
-  font-size: 0;
-  line-height: 0;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 18px rgba(0, 0, 0, 0.06);
   transition: border-color 140ms ease, box-shadow 140ms ease, color 140ms ease, transform 140ms ease, background 140ms ease;
 }
@@ -408,16 +425,20 @@ body > footer:not(.site-footer) a:hover {
   transform: translateY(1px);
 }
 
-.icon-button::before {
-  display: block;
-  font-size: 1.15rem;
-  font-weight: 500;
-  line-height: 1;
+.icon-button:focus-visible {
+  outline: none;
+  border-color: rgba(37, 99, 235, 0.52);
+  color: var(--text);
+  box-shadow: 0 0 0 3px var(--accent-soft), inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 10px 22px rgba(0, 0, 0, 0.09);
 }
 
-.modal-close::before {
-  content: "\00d7";
-  transform: translateY(-0.5px);
+.icon-button svg {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25;
 }
 
 .modal-close {
@@ -430,15 +451,14 @@ body > footer:not(.site-footer) a:hover {
   left: 18px;
 }
 
-.modal-back::before {
-  content: "\2039";
-  font-size: 1.75rem;
-  transform: translate(-0.5px, -1px);
+.modal-back svg {
+  transform: translateX(-0.5px);
 }
 
 .modal-back + .modal-close + .modal-step,
 .modal-back ~ .modal-step {
   margin-left: 44px;
+  margin-right: 44px;
 }
 
 .choice-grid {
@@ -558,6 +578,10 @@ body > footer:not(.site-footer) a:hover {
   gap: 8px;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-progress {
+  margin-top: 14px;
+}
+
 .buyer-progress span,
 .seller-progress span {
   height: 4px;
@@ -573,6 +597,10 @@ body > footer:not(.site-footer) a:hover {
 .buyer-step,
 .seller-step {
   margin-top: 22px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .seller-step {
+  margin-top: 14px;
 }
 
 .buyer-part-grid {
@@ -832,6 +860,10 @@ body > footer:not(.site-footer) a:hover {
   gap: 10px;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-actions {
+  margin-top: 10px;
+}
+
 .buyer-actions .full-action,
 .seller-actions .full-action {
   margin-top: 0;
@@ -958,6 +990,10 @@ body > footer:not(.site-footer) a:hover {
   gap: 8px;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .selected-summary {
+  gap: 6px;
+}
+
 .selected-summary span {
   padding: 7px 10px;
   border-radius: 999px;
@@ -973,6 +1009,11 @@ body > footer:not(.site-footer) a:hover {
   gap: 14px;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-list {
+  margin-top: 10px;
+  gap: 10px;
+}
+
 .seller-detail-card {
   padding: 16px;
   border: 1px solid var(--border);
@@ -980,11 +1021,20 @@ body > footer:not(.site-footer) a:hover {
   background: var(--surface);
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-card {
+  padding: 14px;
+}
+
 .seller-detail-head {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr);
   gap: 16px;
   align-items: center;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head {
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 12px;
 }
 
 .seller-detail-head img {
@@ -996,10 +1046,20 @@ body > footer:not(.site-footer) a:hover {
   background: var(--surface-muted);
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head img {
+  width: 70px;
+  height: 70px;
+  padding: 8px;
+}
+
 .seller-detail-head h3 {
   margin-top: 4px;
   font-size: 1.35rem;
   line-height: 1.05;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head h3 {
+  font-size: 1.16rem;
 }
 
 .seller-detail-head p {
@@ -1014,6 +1074,10 @@ body > footer:not(.site-footer) a:hover {
   grid-template-columns: minmax(150px, 1.2fr) minmax(132px, 0.9fr) minmax(150px, 1.2fr);
   gap: 10px;
   align-items: end;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .seller-model-grid {
+  margin-top: 12px;
 }
 
 .listing-form {
@@ -1133,8 +1197,26 @@ body > footer:not(.site-footer) a:hover {
   align-self: stretch;
 }
 
-.seller-price-panel {
+.seller-bottom-panel {
   margin-top: 14px;
+  padding-top: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.seller-bottom-panel:has(.seller-comment-field:not([hidden])) {
+  grid-template-columns: minmax(250px, 0.82fr) minmax(260px, 1fr);
+  align-items: end;
+}
+
+.seller-bottom-main {
+  display: grid;
+  gap: 10px;
+}
+
+.seller-price-panel {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -1248,6 +1330,12 @@ body > footer:not(.site-footer) a:hover {
   gap: 10px;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .photo-checklist {
+  margin-top: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 8px;
+}
+
 .photo-slot {
   min-height: 92px;
   padding: 12px;
@@ -1258,6 +1346,15 @@ body > footer:not(.site-footer) a:hover {
   border-radius: 8px;
   background: #fbfbfa;
   cursor: pointer;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .photo-slot {
+  min-height: 64px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  align-content: center;
+  padding: 9px;
+  gap: 8px;
 }
 
 .photo-slot:hover {
@@ -1285,9 +1382,18 @@ body > footer:not(.site-footer) a:hover {
   font-weight: 700;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .photo-slot span {
+  width: 24px;
+  height: 24px;
+}
+
 .photo-slot strong {
   font-size: 0.92rem;
   line-height: 1.2;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .photo-slot strong {
+  font-size: 0.86rem;
 }
 
 .cleaning-check,
@@ -1300,9 +1406,7 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .cleaning-check {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+  min-height: 22px;
 }
 
 .cleaning-check input,
@@ -1313,18 +1417,16 @@ body > footer:not(.site-footer) a:hover {
   accent-color: var(--text);
 }
 
-.seller-comment-box {
-  margin-top: 12px;
-  display: grid;
-  gap: 10px;
-}
-
 .seller-comment-toggle {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   color: var(--muted);
   font-size: 0.94rem;
+}
+
+.seller-bottom-panel:has(.seller-comment-field:not([hidden])) .seller-comment-toggle {
+  grid-column: 1;
 }
 
 .seller-comment-toggle input {
@@ -1337,6 +1439,11 @@ body > footer:not(.site-footer) a:hover {
 .seller-comment-field {
   display: grid;
   gap: 7px;
+}
+
+.seller-bottom-panel:has(.seller-comment-field:not([hidden])) .seller-comment-field {
+  grid-column: 2;
+  grid-row: 1 / span 2;
 }
 
 .seller-comment-field[hidden] {
@@ -1541,10 +1648,16 @@ body > footer:not(.site-footer) a:hover {
   .buyer-model-grid,
   .buyer-request-form,
   .seller-part-grid,
+  .seller-bottom-panel:has(.seller-comment-field:not([hidden])),
   .seller-model-grid,
   .listing-form,
   .photo-checklist {
     grid-template-columns: 1fr;
+  }
+
+  .seller-bottom-panel:has(.seller-comment-field:not([hidden])) .seller-comment-field {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .buyer-part-card {

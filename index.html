@@ -80,7 +80,12 @@
 
   <div class="modal-layer is-visible" data-modal-layer>
     <section class="modal is-active" role="dialog" aria-modal="true" aria-labelledby="entry-title" data-modal="entry">
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
       <p class="modal-step">Start</p>
       <h2 id="entry-title">Are you here to buy or sell?</h2>
       <p class="modal-copy">Choose the path that fits what you need today.</p>
@@ -108,8 +113,18 @@
     </section>
 
     <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
-      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
       <p class="modal-step" data-buyer-step-label>Buyer flow 1 of 3</p>
       <h2 id="buyer-title">Find the part you need</h2>
       <p class="modal-copy" data-buyer-step-copy>Start with the missing piece. No account needed to browse.</p>
@@ -249,8 +264,18 @@
     </section>
 
     <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
-      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
       <p class="modal-step" data-seller-step-label>Seller flow 1 of 3</p>
       <h2 id="seller-title">What do you want to sell?</h2>
       <p class="modal-copy" data-seller-step-copy>Select one or more parts. You can add trust badges after publishing.</p>
@@ -638,24 +663,27 @@
               ${shotList}
             </div>
 
-            <div class="seller-price-panel">
-              <label>
-                <span>Price for this ${data.title}</span>
-                <input type="text" inputmode="decimal" placeholder="e.g. ${data.recommendedPrice}" value="${savedPrice}" data-seller-price-input>
-              </label>
-              <p class="recommended-price-hint">Recommended price: ${data.recommendedPrice}</p>
-            </div>
+            <div class="seller-bottom-panel">
+              <div class="seller-bottom-main">
+                <div class="seller-price-panel">
+                  <label>
+                    <span>Price</span>
+                    <input type="text" inputmode="decimal" placeholder="e.g. ${data.recommendedPrice}" value="${savedPrice}" data-seller-price-input>
+                  </label>
+                  <p class="recommended-price-hint">Recommended price: ${data.recommendedPrice}</p>
+                </div>
 
-            <label class="cleaning-check">
-              <input type="checkbox">
-              <span>I cleaned this part before publishing.</span>
-            </label>
+                <label class="cleaning-check">
+                  <input type="checkbox">
+                  <span>I cleaned this part before publishing.</span>
+                </label>
+              </div>
 
-            <div class="seller-comment-box">
               <label class="seller-comment-toggle">
                 <input type="checkbox" data-seller-comment-toggle ${isCommentEnabled ? 'checked' : ''}>
                 <span>Add a private note for the PodsReunion team</span>
               </label>
+
               <label class="seller-comment-field" ${isCommentEnabled ? '' : 'hidden'}>
                 <span>Only our team will see this</span>
                 <textarea rows="3" placeholder="I am not fully sure about the model number or condition." data-seller-comment-input>${savedComment}</textarea>
