@@ -80,7 +80,12 @@
 
   <div class="modal-layer is-visible" data-modal-layer>
     <section class="modal is-active" role="dialog" aria-modal="true" aria-labelledby="entry-title" data-modal="entry">
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
       <p class="modal-step">Start</p>
       <h2 id="entry-title">Are you here to buy or sell?</h2>
       <p class="modal-copy">Choose the path that fits what you need today.</p>
@@ -107,30 +112,170 @@
       </div>
     </section>
 
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
-      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
-      <p class="modal-step">Buyer placeholder</p>
+    <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="buyer-title" data-modal="buyer" hidden>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+      <p class="modal-step" data-buyer-step-label>Buyer flow 1 of 3</p>
       <h2 id="buyer-title">Find the part you need</h2>
-      <p class="modal-copy">This is the future fast path for POD-21.</p>
+      <p class="modal-copy" data-buyer-step-copy>Start with the missing piece. No account needed to browse.</p>
 
-      <div class="part-options" aria-label="Needed part">
-        <button type="button">Left AirPod</button>
-        <button type="button">Right AirPod</button>
-        <button type="button">Charging case</button>
+      <div class="buyer-progress" aria-hidden="true">
+        <span class="is-active" data-buyer-progress-step="1"></span>
+        <span data-buyer-progress-step="2"></span>
+        <span data-buyer-progress-step="3"></span>
       </div>
 
-      <div class="placeholder-field">
-        <span>Model selector placeholder</span>
-        <strong>AirPods Pro 2, AirPods 3, AirPods 4...</strong>
+      <div class="buyer-step is-active" data-buyer-step="1">
+        <div class="buyer-part-grid" aria-label="Needed part">
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="left">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/left.png" alt="">
+            </span>
+            <span>
+              <strong>Left AirPod</strong>
+              <small>I lost the left earbud.</small>
+            </span>
+          </button>
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="right">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+            </span>
+            <span>
+              <strong>Right AirPod</strong>
+              <small>I lost the right earbud.</small>
+            </span>
+          </button>
+          <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="case">
+            <span class="buyer-part-image">
+              <img src="assets/airpods/cases/web/A2968-magsafe-lightning.png" alt="">
+            </span>
+            <span>
+              <strong>Charging case</strong>
+              <small>I need a compatible case.</small>
+            </span>
+          </button>
+        </div>
       </div>
 
-      <button class="full-action" type="button">Show compatible listings</button>
+      <div class="buyer-step" data-buyer-step="2" hidden>
+        <div class="buyer-model-card">
+          <div>
+            <span class="modal-step">Model check</span>
+            <h3>Which AirPods do you have?</h3>
+            <p>For now, this is a lightweight compatibility placeholder. We will only show listings that should match this model.</p>
+          </div>
+        </div>
+
+        <div class="buyer-model-grid" aria-label="AirPods model">
+          <button class="buyer-model-option" type="button" aria-pressed="true" data-buyer-model="AirPods Pro 1">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-1-with-case.png" alt="">
+            </span>
+            <strong>AirPods Pro 1</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 2">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-2-with-case-front.png" alt="">
+            </span>
+            <strong>AirPods Pro 2</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 3">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-3-with-case-front.png" alt="">
+            </span>
+            <strong>AirPods Pro 3</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 1">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-1-with-case.png" alt="">
+            </span>
+            <strong>AirPods 1</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 2">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-2-with-case.png" alt="">
+            </span>
+            <strong>AirPods 2</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 3">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-3-with-case.png" alt="">
+            </span>
+            <strong>AirPods 3</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-4-with-case.png" alt="">
+            </span>
+            <strong>AirPods 4</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4 ANC">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-4-anc-with-case.png" alt="">
+            </span>
+            <strong>AirPods 4 ANC</strong>
+          </button>
+          <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="not-sure">
+            <span class="buyer-model-image">
+              <img src="assets/airpods/products/web/airpods-pro-2-earbuds.png" alt="">
+            </span>
+            <strong>I am not sure</strong>
+          </button>
+        </div>
+      </div>
+
+      <div class="buyer-step" data-buyer-step="3" hidden>
+        <div class="buyer-selected-part" data-buyer-selected-part></div>
+
+        <div class="empty-results">
+          <span class="modal-step">No listings yet</span>
+          <h3>No compatible part is available right now.</h3>
+          <p>Leave your email and we will notify you when someone lists this part.</p>
+        </div>
+
+        <form class="buyer-request-form" data-buyer-request-form>
+          <label>
+            <span>Email address</span>
+            <input type="email" placeholder="you@example.com" required>
+          </label>
+          <button class="full-action" type="submit">Notify me when available</button>
+        </form>
+
+        <div class="request-success" data-request-success hidden>
+          <strong>Request saved.</strong>
+          <span>This is a prototype confirmation. Later, this will create a real buyer request.</span>
+        </div>
+      </div>
+
+      <div class="buyer-actions">
+        <button class="secondary-action buyer-secondary" type="button" data-buyer-prev hidden>Back</button>
+        <button class="full-action buyer-next" type="button" data-buyer-next disabled>Continue</button>
+      </div>
     </section>
 
     <section class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="seller-title" data-modal="seller" hidden>
-      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">&lt;</button>
-      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">x</button>
+      <button class="icon-button modal-back" type="button" data-show-entry aria-label="Back">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </button>
+      <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
       <p class="modal-step" data-seller-step-label>Seller flow 1 of 3</p>
       <h2 id="seller-title">What do you want to sell?</h2>
       <p class="modal-copy" data-seller-step-copy>Select one or more parts. You can add trust badges after publishing.</p>
@@ -182,16 +327,11 @@
       </div>
 
       <div class="seller-step" data-seller-step="2" hidden>
-        <div class="selected-summary" data-selected-summary></div>
         <div class="seller-detail-list" data-seller-detail-list></div>
       </div>
 
       <div class="seller-step" data-seller-step="3" hidden>
         <div class="listing-form">
-          <label>
-            <span>Asking price</span>
-            <input type="text" inputmode="decimal" placeholder="e.g. 49 EUR">
-          </label>
           <label>
             <span>Location</span>
             <input type="text" placeholder="Berlin, Germany">
@@ -236,6 +376,18 @@
     const pathButtons = document.querySelectorAll('[data-open-path]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
+    const buyerStepLabel = document.querySelector('[data-buyer-step-label]');
+    const buyerStepCopy = document.querySelector('[data-buyer-step-copy]');
+    const buyerModal = document.querySelector('[data-modal="buyer"]');
+    const buyerSteps = document.querySelectorAll('[data-buyer-step]');
+    const buyerProgressSteps = document.querySelectorAll('[data-buyer-progress-step]');
+    const buyerPartButtons = document.querySelectorAll('[data-buyer-part]');
+    const buyerModelButtons = document.querySelectorAll('[data-buyer-model]');
+    const buyerPrevButton = document.querySelector('[data-buyer-prev]');
+    const buyerNextButton = document.querySelector('[data-buyer-next]');
+    const buyerRequestForm = document.querySelector('[data-buyer-request-form]');
+    const buyerSelectedPart = document.querySelector('[data-buyer-selected-part]');
+    const requestSuccess = document.querySelector('[data-request-success]');
     const sellerStepLabel = document.querySelector('[data-seller-step-label]');
     const sellerStepCopy = document.querySelector('[data-seller-step-copy]');
     const sellerModal = document.querySelector('[data-modal="seller"]');
@@ -243,32 +395,275 @@
     const sellerProgressSteps = document.querySelectorAll('[data-progress-step]');
     const sellerPartButtons = document.querySelectorAll('[data-seller-part]');
     const sellerDetailList = document.querySelector('[data-seller-detail-list]');
-    const selectedSummary = document.querySelector('[data-selected-summary]');
     const sellerPrevButton = document.querySelector('[data-seller-prev]');
     const sellerNextButton = document.querySelector('[data-seller-next]');
-    const customSelects = new Set();
+    let buyerStep = 1;
+    let selectedBuyerPart = null;
+    let selectedBuyerModel = 'AirPods Pro 1';
     let sellerStep = 1;
     const selectedSellerParts = new Set();
+    const sellerPartPrices = {
+      left: '',
+      right: '',
+      case: ''
+    };
+    const sellerPartModels = {
+      left: 'airpods-pro-2',
+      right: 'airpods-pro-2',
+      case: 'A2968-magsafe-lightning'
+    };
+    const sellerPartConditions = {
+      left: '',
+      right: '',
+      case: ''
+    };
+
+	    const airPodsModelImages = {
+	      'airpods-pro-1': {
+	        left: 'assets/airpods/earbuds/airpods-pro-1/left.png',
+	        right: 'assets/airpods/earbuds/airpods-pro-1/right.png',
+	        case: 'assets/airpods/cases/web/A2190.png'
+      },
+      'airpods-pro-2': {
+        left: 'assets/airpods/earbuds/airpods-pro-2/left.png',
+        right: 'assets/airpods/earbuds/airpods-pro-2/right.png',
+        case: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+      },
+      'airpods-pro-3': {
+        left: 'assets/airpods/earbuds/airpods-pro-3/left.png',
+        right: 'assets/airpods/earbuds/airpods-pro-3/right.png',
+        case: 'assets/airpods/cases/web/A3122-magsafe.png'
+      },
+      'airpods-1': {
+        left: 'assets/airpods/earbuds/airpods-1/left.png',
+        right: 'assets/airpods/earbuds/airpods-1/right.png',
+        case: 'assets/airpods/cases/web/A1602.png'
+      },
+      'airpods-2': {
+        left: 'assets/airpods/earbuds/airpods-2/left.png',
+        right: 'assets/airpods/earbuds/airpods-2/right.png',
+        case: 'assets/airpods/cases/web/A1938.png'
+      },
+      'airpods-3': {
+        left: 'assets/airpods/earbuds/airpods-3/left.png',
+        right: 'assets/airpods/earbuds/airpods-3/right.png',
+        case: 'assets/airpods/cases/web/A2566-magsafe.png'
+      },
+      'airpods-4': {
+        left: 'assets/airpods/earbuds/airpods-4/left.png',
+        right: 'assets/airpods/earbuds/airpods-4/right.png',
+        case: 'assets/airpods/cases/web/A3058.png'
+      },
+      'airpods-4-anc': {
+        left: 'assets/airpods/earbuds/airpods-4-anc/left.png',
+        right: 'assets/airpods/earbuds/airpods-4-anc/right.png',
+        case: 'assets/airpods/cases/web/A3059-ANC.png'
+	      }
+	    };
+
+	    const chargingCaseImages = {
+	      A1602: 'assets/airpods/cases/web/A1602.png',
+	      A1938: 'assets/airpods/cases/web/A1938.png',
+	      'A2566-magsafe': 'assets/airpods/cases/web/A2566-magsafe.png',
+	      'A2897-lightning': 'assets/airpods/cases/web/A2897-lightning.png',
+	      A3058: 'assets/airpods/cases/web/A3058.png',
+	      'A3059-ANC': 'assets/airpods/cases/web/A3059-ANC.png',
+	      A2190: 'assets/airpods/cases/web/A2190.png',
+	      'A2700-magsafe-lightning': 'assets/airpods/cases/web/A2700-magsafe-lightning.png',
+	      'A2968-magsafe-lightning': 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
+	      'A3122-magsafe': 'assets/airpods/cases/web/A3122-magsafe.png'
+	    };
+
+    const airPodsModelOptions = [
+      {
+        value: 'airpods-pro-1',
+        label: 'AirPods Pro 1',
+        meta: 'Pro earbuds',
+        image: 'assets/airpods/products/web/airpods-pro-1-earbuds.png'
+      },
+      {
+        value: 'airpods-pro-2',
+        label: 'AirPods Pro 2',
+        meta: 'Pro earbuds',
+        image: 'assets/airpods/products/web/airpods-pro-2-earbuds.png'
+      },
+      {
+        value: 'airpods-pro-3',
+        label: 'AirPods Pro 3',
+        meta: 'Pro earbuds',
+        image: 'assets/airpods/products/web/airpods-pro-3-earbuds.png'
+      },
+      {
+        value: 'airpods-1',
+        label: 'AirPods 1',
+        meta: 'Original shape',
+        image: 'assets/airpods/products/web/airpods-1-earbuds.png'
+      },
+      {
+        value: 'airpods-2',
+        label: 'AirPods 2',
+        meta: 'Original shape',
+        image: 'assets/airpods/products/web/airpods-2-earbuds.png'
+      },
+      {
+        value: 'airpods-3',
+        label: 'AirPods 3',
+        meta: 'Short stem',
+        image: 'assets/airpods/products/web/airpods-3-earbuds.png'
+      },
+      {
+        value: 'airpods-4',
+        label: 'AirPods 4',
+        meta: 'Open fit',
+        image: 'assets/airpods/products/web/airpods-4-earbuds.png'
+      },
+      {
+        value: 'airpods-4-anc',
+        label: 'AirPods 4 ANC',
+        meta: 'Open fit ANC',
+        image: 'assets/airpods/products/web/airpods-4-anc-earbuds.png'
+      },
+      {
+        value: 'unknown',
+        label: 'I am not sure',
+        meta: 'Identify later',
+        image: 'assets/airpods/products/web/airpods-pro-2-earbuds.png'
+      }
+    ];
+
+    const chargingCaseOptions = [
+      {
+        value: '',
+        label: 'I am not sure',
+        meta: 'Identify later',
+        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+      },
+      {
+        value: 'A1602',
+        label: 'A1602',
+        meta: 'AirPods 1/2 Lightning',
+        image: 'assets/airpods/cases/web/A1602.png'
+      },
+      {
+        value: 'A1938',
+        label: 'A1938',
+        meta: 'AirPods 1/2 Wireless',
+        image: 'assets/airpods/cases/web/A1938.png'
+      },
+      {
+        value: 'A2566-magsafe',
+        label: 'A2566',
+        meta: 'AirPods 3 MagSafe',
+        image: 'assets/airpods/cases/web/A2566-magsafe.png'
+      },
+      {
+        value: 'A2897-lightning',
+        label: 'A2897',
+        meta: 'AirPods 3 Lightning',
+        image: 'assets/airpods/cases/web/A2897-lightning.png'
+      },
+      {
+        value: 'A3058',
+        label: 'A3058',
+        meta: 'AirPods 4',
+        image: 'assets/airpods/cases/web/A3058.png'
+      },
+      {
+        value: 'A3059-ANC',
+        label: 'A3059',
+        meta: 'AirPods 4 ANC',
+        image: 'assets/airpods/cases/web/A3059-ANC.png'
+      },
+      {
+        value: 'A2190',
+        label: 'A2190',
+        meta: 'AirPods Pro 1',
+        image: 'assets/airpods/cases/web/A2190.png'
+      },
+      {
+        value: 'A2700-magsafe-lightning',
+        label: 'A2700',
+        meta: 'Pro 2 Lightning',
+        image: 'assets/airpods/cases/web/A2700-magsafe-lightning.png'
+      },
+      {
+        value: 'A2968-magsafe-lightning',
+        label: 'A2968',
+        meta: 'Pro 2 USB-C',
+        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+      },
+      {
+        value: 'A3122-magsafe',
+        label: 'A3122',
+        meta: 'Pro 3 USB-C',
+        image: 'assets/airpods/cases/web/A3122-magsafe.png'
+      }
+    ];
+
+    const conditionOptions = [
+      {
+        value: '',
+        label: 'Select condition',
+        meta: 'Choose grade',
+        icon: 'list-checks'
+      },
+      {
+        value: 'excellent',
+        label: 'Excellent',
+        meta: 'Almost new',
+        icon: 'sparkles'
+      },
+      {
+        value: 'good',
+        label: 'Good',
+        meta: 'Light wear',
+        icon: 'circle-check'
+      },
+      {
+        value: 'fair',
+        label: 'Fair',
+        meta: 'Visible wear',
+        icon: 'circle-alert'
+      },
+      {
+        value: 'damaged',
+        label: 'Damaged',
+        meta: 'Needs repair',
+        icon: 'wrench'
+      },
+      {
+        value: 'not-sure',
+        label: 'Not sure yet',
+        meta: 'Review later',
+        icon: 'circle-question'
+      }
+    ];
 
     const sellerPartData = {
       left: {
         title: 'Left AirPod',
         image: 'assets/airpods/earbuds/airpods-pro-2/left.png',
-        helper: 'The model number is printed on the stem. Take a clear close-up before moving on.',
+        recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       right: {
         title: 'Right AirPod',
         image: 'assets/airpods/earbuds/airpods-pro-2/right.png',
-        helper: 'The model number is printed on the stem. Take a clear close-up before moving on.',
+        recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       case: {
         title: 'Charging case',
         image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
-        helper: 'The model number is inside the lid. Open the case and photograph the inside clearly.',
+        recommendedPrice: '59 EUR',
         shots: ['Front closed', 'Back hinge', 'Inside open', 'Charging port', 'Model number', 'LED on', 'Charging proof']
       }
+    };
+
+    const sellerPartPlaceholderImages = {
+      left: sellerPartData.left.image,
+      right: sellerPartData.right.image,
+      case: sellerPartData.case.image
     };
 
     const sellerStepContent = {
@@ -280,17 +675,55 @@
       },
       2: {
         label: 'Seller flow 2 of 3',
-        title: 'Add model and photos',
-        copy: 'Each selected part gets its own model check and photo checklist.',
+        title: 'Part details',
+        copy: 'Model, photos, price, and care.',
         next: 'Listing details'
       },
       3: {
         label: 'Seller flow 3 of 3',
         title: 'Publish your listing',
-        copy: 'Add the basics now. Stronger verification badges can be completed later.',
+        copy: 'Add shared listing basics now. Part prices stay attached to each item.',
         next: 'Publish listing'
       }
     };
+
+    const buyerStepContent = {
+      1: {
+        label: 'Buyer flow 1 of 3',
+        title: 'Find the part you need',
+        copy: 'Start with the missing piece. No account needed to browse.',
+        next: 'Continue'
+      },
+      2: {
+        label: 'Buyer flow 2 of 3',
+        title: 'Choose your model',
+        copy: 'This keeps results compatible with the AirPods you already have.',
+        next: 'Show compatible listings'
+      },
+      3: {
+        label: 'Buyer flow 3 of 3',
+        title: 'Get notified',
+        copy: 'No matching listing yet. Save a simple request and we will tell you when one appears.',
+        next: 'Done'
+      }
+    };
+
+    function renderBuyerSelectedPart() {
+      if (!selectedBuyerPart) {
+        buyerSelectedPart.innerHTML = '';
+        return;
+      }
+
+      const data = sellerPartData[selectedBuyerPart];
+      buyerSelectedPart.innerHTML = `
+        <img src="${data.image}" alt="">
+        <span>
+          <small>Selected request</small>
+          <strong>${data.title}</strong>
+          <em>${selectedBuyerModel}</em>
+        </span>
+      `;
+    }
 
     function showModal(name) {
       modalLayer.classList.add('is-visible');
@@ -303,6 +736,10 @@
 
       if (name === 'seller') {
         setSellerStep(1);
+      }
+
+      if (name === 'buyer') {
+        setBuyerStep(1);
       }
     }
 
@@ -335,154 +772,434 @@
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
+        if (document.querySelector('.image-select.is-open')) {
+          closeImageDropdowns();
+          return;
+        }
+
         closeModal();
-        closeCustomSelects();
       }
     });
 
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.custom-select')) {
-        closeCustomSelects();
-      }
-    });
-
-    function renderSellerDetails() {
-      const selectedParts = Array.from(selectedSellerParts);
-      selectedSummary.innerHTML = selectedParts.map((part) => `<span>${sellerPartData[part].title}</span>`).join('');
-      sellerDetailList.innerHTML = selectedParts.map((part) => {
-        const data = sellerPartData[part];
-        const shotList = data.shots.map((shot, index) => `
-          <label class="photo-slot">
-            <input type="file" accept="image/*">
-            <span>${index + 1}</span>
+		    function renderSellerDetails() {
+		      const selectedParts = Array.from(selectedSellerParts);
+		      sellerDetailList.innerHTML = selectedParts.map((part) => {
+		        const data = sellerPartData[part];
+		        const modelHelp = part === 'case' ? 'The model number is printed inside the lid.' : 'The model number is printed on the stem.';
+		        const savedPrice = escapeHtml(sellerPartPrices[part] || '');
+		        const shotList = data.shots.map((shot, index) => `
+	          <label class="photo-slot">
+	            <input type="file" accept="image/*">
+	            <span>${index + 1}</span>
             <strong>${shot}</strong>
           </label>
         `).join('');
 
         return `
-          <article class="seller-detail-card">
+          <article class="seller-detail-card" data-seller-detail-card data-seller-part="${part}">
             <div class="seller-detail-head">
-              <img src="${data.image}" alt="">
-              <div>
-                <span class="modal-step">${data.title}</span>
-                <h3>${data.title} details</h3>
-                <p>${data.helper}</p>
+              <img src="${data.image}" alt="${data.title} preview" data-seller-part-image>
+              <h3>${data.title}</h3>
+            </div>
+
+            <div class="seller-form-section seller-about-section">
+              <h4>About your item</h4>
+              <div class="seller-model-grid">
+                ${renderSellerModelSelect(part)}
+                <div class="model-number-field">
+                  <span class="field-title" id="model-number-label-${part}">
+		                    <span>Model number</span>
+		                    <button class="model-help-button" type="button" aria-label="Where to find the model number" aria-describedby="model-help-${part}">
+	                      <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+	                        <circle cx="12" cy="12" r="10"></circle>
+	                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+		                        <path d="M12 17h.01"></path>
+		                      </svg>
+		                    </button>
+		                    <span class="model-help-tooltip" id="model-help-${part}" role="tooltip">${modelHelp}</span>
+		                  </span>
+		                  <input type="text" placeholder="e.g. A2699" aria-labelledby="model-number-label-${part}">
+		                </div>
+                ${renderConditionSelect(part)}
               </div>
             </div>
 
-            <div class="seller-model-grid">
-              <label>
-                <span>AirPods model</span>
-                <select data-custom-select>
-                  <option>AirPods Pro 2</option>
-                  <option>AirPods Pro 1</option>
-                  <option>AirPods 4</option>
-                  <option>AirPods 3</option>
-                  <option>AirPods 2</option>
-                  <option>I am not sure</option>
-                </select>
-              </label>
-              <label>
-                <span>Model number</span>
-                <input type="text" placeholder="e.g. A2699">
-              </label>
-              <label>
-                <span>Condition</span>
-                <select data-custom-select>
-                  <option>Good</option>
-                  <option>Like new</option>
-                  <option>Used</option>
-                  <option>Damaged</option>
-                  <option>Unknown</option>
-                </select>
-              </label>
+            <div class="seller-form-section seller-photo-section">
+              <h4>Photos</h4>
+              <div class="photo-checklist">
+                ${shotList}
+              </div>
             </div>
 
-            <div class="photo-checklist">
-              ${shotList}
+            <div class="seller-form-section seller-price-section">
+              <h4>Price</h4>
+              <div class="seller-bottom-panel">
+                <div class="seller-bottom-main">
+                  <div class="seller-price-panel">
+                    <label>
+                      <span class="visually-hidden">Price</span>
+                      <input type="text" inputmode="decimal" placeholder="e.g. ${data.recommendedPrice}" value="${savedPrice}" data-seller-price-input>
+                    </label>
+                    <p class="recommended-price-hint">Recommended price: ${data.recommendedPrice}</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <label class="cleaning-check">
-              <input type="checkbox">
-              <span>I cleaned this part before publishing.</span>
-            </label>
+            <div class="seller-form-section seller-hygiene-section">
+              <h4>Hygiene & care</h4>
+              <p class="section-note">Cleanliness matters: we review it before listing and add a badge when it is verified.</p>
+              <label class="cleaning-check">
+                <input type="checkbox">
+                <span>Cleaned and ready to ship.</span>
+              </label>
+            </div>
           </article>
         `;
       }).join('');
+	      sellerDetailList.querySelectorAll('[data-seller-model-select]').forEach(updateSellerPartImage);
+	      sellerDetailList.querySelectorAll('[data-seller-case-select]').forEach(updateSellerCaseImage);
+	    }
 
-      enhanceCustomSelects(sellerDetailList);
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, (character) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[character]);
     }
 
-    function closeCustomSelects(except) {
-      customSelects.forEach((control) => {
-        if (control !== except) {
-          control.classList.remove('is-open');
-          control.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
+	    function renderSellerModelSelect(part) {
+	      if (part === 'case') {
+	        return `
+	          <div class="seller-select-field">
+	            <span class="field-title" id="case-model-label-${part}">Charging case model</span>
+	            ${renderImageDropdown({
+                labelId: `case-model-label-${part}`,
+                name: 'case',
+                options: chargingCaseOptions,
+                part,
+                selectedValue: sellerPartModels.case,
+                selectAttribute: 'data-seller-case-select'
+              })}
+	          </div>
+	        `;
+	      }
+
+	      return `
+	        <div class="seller-select-field">
+	          <span class="field-title" id="airpods-model-label-${part}">
+	            <span>AirPods model</span>
+	            <a class="model-help-button model-help-link" href="https://support.apple.com/en-us/109525" target="_blank" rel="noopener noreferrer" aria-label="Open Apple's AirPods model identification page" title="Identify your AirPods model on Apple Support">
+	              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+	                <circle cx="12" cy="12" r="10"></circle>
+	                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+	                <path d="M12 17h.01"></path>
+	              </svg>
+	            </a>
+	          </span>
+	          ${renderImageDropdown({
+              labelId: `airpods-model-label-${part}`,
+              name: 'airpods',
+              options: airPodsModelOptions,
+              part,
+              selectedValue: sellerPartModels[part],
+              selectAttribute: 'data-seller-model-select'
+            })}
+	        </div>
+	      `;
+	    }
+
+    function renderLucideIcon(iconName) {
+      const icons = {
+        'list-checks': '<path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path><path d="M13 6h8"></path><path d="M13 12h8"></path><path d="M13 18h8"></path>',
+        sparkles: '<path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path>',
+        'circle-check': '<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>',
+        'circle-alert': '<circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line>',
+        wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.1-3.1a6 6 0 0 1-7.9 7.9l-6 6a2.1 2.1 0 0 1-3-3l6-6a6 6 0 0 1 7.9-7.9z"></path>',
+        'circle-question': '<circle cx="12" cy="12" r="10"></circle><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>'
+      };
+
+      return `
+        <svg class="image-select-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          ${icons[iconName] || icons['circle-question']}
+        </svg>
+      `;
+    }
+
+    function renderDropdownThumb(option) {
+      if (option.image) {
+        return `<img src="${option.image}" alt="">`;
+      }
+
+      return renderLucideIcon(option.icon);
+    }
+
+    function renderImageDropdown({ labelId, name, options, part, selectedValue, selectAttribute }) {
+      const selectedOption = options.find((option) => option.value === selectedValue) || options[0];
+      const optionItems = options.map((option) => `
+        <button
+          class="image-select-option"
+          type="button"
+          role="option"
+          aria-selected="${option.value === selectedOption.value}"
+          data-image-select-option
+          data-value="${escapeHtml(option.value)}"
+          data-label="${escapeHtml(option.label)}"
+          data-meta="${escapeHtml(option.meta || '')}"
+        >
+          <span class="image-select-thumb">
+            ${renderDropdownThumb(option)}
+          </span>
+          <span class="image-select-text">
+            <strong>${option.label}</strong>
+          </span>
+        </button>
+      `).join('');
+
+      return `
+        <span class="image-select" data-image-select data-image-select-name="${name}">
+          <input type="hidden" value="${escapeHtml(selectedOption.value)}" ${selectAttribute}>
+          <button
+            class="image-select-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-labelledby="${labelId}"
+            data-image-select-trigger
+          >
+            <span class="image-select-thumb image-select-trigger-thumb">
+              ${renderDropdownThumb(selectedOption)}
+            </span>
+	            <span class="image-select-text">
+	              <strong data-image-select-trigger-label>${selectedOption.label}</strong>
+	            </span>
+            <span class="image-select-arrow" aria-hidden="true"></span>
+          </button>
+          <span class="image-select-menu" role="listbox" aria-labelledby="${labelId}" data-image-select-menu>
+            ${optionItems}
+          </span>
+        </span>
+      `;
+    }
+
+	    function renderConditionSelect(part) {
+	      const conditionHelp = 'Choose the closest honest grade. Photos show the details.';
+	      return `
+	        <div class="seller-select-field condition-field">
+	          <span class="field-title" id="condition-label-${part}">
+	            <span>Condition</span>
+	            <button class="model-help-button" type="button" aria-label="Condition grading help" aria-describedby="condition-help-${part}">
+	              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+	                <circle cx="12" cy="12" r="10"></circle>
+	                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+	                <path d="M12 17h.01"></path>
+	              </svg>
+	            </button>
+	            <span class="model-help-tooltip" id="condition-help-${part}" role="tooltip">${conditionHelp}</span>
+	          </span>
+	          ${renderImageDropdown({
+              labelId: `condition-label-${part}`,
+              name: 'condition',
+              options: conditionOptions,
+              part,
+              selectedValue: sellerPartConditions[part],
+              selectAttribute: 'data-seller-condition'
+            })}
+	        </div>
+	      `;
+	    }
+
+	    function updateSellerPartImageForModel(detailCard, modelValue) {
+	      const image = detailCard?.querySelector('[data-seller-part-image]');
+
+	      if (!detailCard || !image) {
+	        return;
+	      }
+
+	      const part = detailCard.dataset.sellerPart;
+	      const modelImages = airPodsModelImages[modelValue];
+	      image.src = modelImages?.[part] || sellerPartPlaceholderImages[part] || sellerPartData.case.image;
+	      image.alt = `${sellerPartData[part]?.title || 'AirPods part'} preview`;
+	    }
+
+	    function updateSellerPartImage(select) {
+	      updateSellerPartImageForModel(select.closest('[data-seller-detail-card]'), select.value);
+	    }
+
+	    function updateSellerCaseImage(select) {
+	      const detailCard = select.closest('[data-seller-detail-card]');
+	      const image = detailCard?.querySelector('[data-seller-part-image]');
+
+	      if (!detailCard || !image) {
+	        return;
+	      }
+
+	      image.src = chargingCaseImages[select.value] || sellerPartPlaceholderImages.case;
+	      image.alt = 'Charging case preview';
+	    }
+
+    function closeImageDropdowns(exceptSelect = null) {
+      sellerDetailList.querySelectorAll('[data-image-select]').forEach((imageSelect) => {
+        if (imageSelect === exceptSelect) {
+          return;
         }
+
+        imageSelect.classList.remove('is-open');
+        imageSelect.querySelector('[data-image-select-trigger]')?.setAttribute('aria-expanded', 'false');
       });
     }
 
-    function enhanceCustomSelects(root = document) {
-      root.querySelectorAll('select[data-custom-select]:not([data-enhanced])').forEach((select) => {
-        select.dataset.enhanced = 'true';
-        select.classList.add('native-select');
+    function setImageSelectValue(imageSelect, option) {
+      const hiddenInput = imageSelect.querySelector('[data-seller-model-select], [data-seller-case-select], [data-seller-condition]');
+	      const detailCard = imageSelect.closest('[data-seller-detail-card]');
+	      const triggerThumb = imageSelect.querySelector('.image-select-trigger-thumb');
+	      const triggerLabel = imageSelect.querySelector('[data-image-select-trigger-label]');
+	      const optionThumb = option.querySelector('.image-select-thumb');
 
-        const control = document.createElement('div');
-        control.className = 'custom-select';
+      if (!hiddenInput || !detailCard) {
+        return;
+      }
 
-        const trigger = document.createElement('button');
-        trigger.type = 'button';
-        trigger.className = 'custom-select-trigger';
-        trigger.setAttribute('aria-haspopup', 'listbox');
-        trigger.setAttribute('aria-expanded', 'false');
+      hiddenInput.value = option.dataset.value;
+      if (triggerThumb && optionThumb) {
+        triggerThumb.innerHTML = optionThumb.innerHTML;
+	      }
+	      triggerLabel.textContent = option.dataset.label;
 
-        const value = document.createElement('span');
-        value.textContent = select.options[select.selectedIndex]?.textContent || '';
-
-        const chevron = document.createElement('span');
-        chevron.className = 'custom-select-chevron';
-        chevron.setAttribute('aria-hidden', 'true');
-        chevron.textContent = 'v';
-
-        trigger.append(value, chevron);
-
-        const list = document.createElement('div');
-        list.className = 'custom-select-list';
-        list.setAttribute('role', 'listbox');
-
-        Array.from(select.options).forEach((option, index) => {
-          const item = document.createElement('button');
-          item.type = 'button';
-          item.className = 'custom-select-option';
-          item.setAttribute('role', 'option');
-          item.setAttribute('aria-selected', String(index === select.selectedIndex));
-          item.textContent = option.textContent;
-
-          item.addEventListener('click', () => {
-            select.selectedIndex = index;
-            value.textContent = option.textContent;
-            list.querySelectorAll('.custom-select-option').forEach((optionButton, optionIndex) => {
-              optionButton.setAttribute('aria-selected', String(optionIndex === index));
-            });
-            select.dispatchEvent(new Event('change', { bubbles: true }));
-            control.classList.remove('is-open');
-            trigger.setAttribute('aria-expanded', 'false');
-          });
-
-          list.append(item);
-        });
-
-        trigger.addEventListener('click', () => {
-          const isOpen = control.classList.contains('is-open');
-          closeCustomSelects(control);
-          control.classList.toggle('is-open', !isOpen);
-          trigger.setAttribute('aria-expanded', String(!isOpen));
-        });
-
-        control.append(trigger, list);
-        select.insertAdjacentElement('afterend', control);
-        customSelects.add(control);
+	      imageSelect.querySelectorAll('[data-image-select-option]').forEach((item) => {
+        item.setAttribute('aria-selected', String(item === option));
       });
+
+      if (hiddenInput.matches('[data-seller-case-select]')) {
+        sellerPartModels.case = hiddenInput.value;
+        updateSellerCaseImage(hiddenInput);
+      } else if (hiddenInput.matches('[data-seller-condition]')) {
+        sellerPartConditions[detailCard.dataset.sellerPart] = hiddenInput.value;
+	      } else {
+	        sellerPartModels[detailCard.dataset.sellerPart] = hiddenInput.value;
+	        updateSellerPartImageForModel(detailCard, hiddenInput.value);
+	      }
+	    }
+
+    function focusSelectedImageOption(imageSelect) {
+      const selectedOption = imageSelect.querySelector('[data-image-select-option][aria-selected="true"]');
+      const firstOption = imageSelect.querySelector('[data-image-select-option]');
+      (selectedOption || firstOption)?.focus();
+    }
+
+    sellerDetailList.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-image-select-trigger]');
+      const option = event.target.closest('[data-image-select-option]');
+
+      if (trigger) {
+        const imageSelect = trigger.closest('[data-image-select]');
+        const shouldOpen = !imageSelect.classList.contains('is-open');
+        closeImageDropdowns(imageSelect);
+        imageSelect.classList.toggle('is-open', shouldOpen);
+        trigger.setAttribute('aria-expanded', String(shouldOpen));
+        return;
+      }
+
+      if (option) {
+        const imageSelect = option.closest('[data-image-select]');
+        setImageSelectValue(imageSelect, option);
+        closeImageDropdowns();
+        imageSelect.querySelector('[data-image-select-trigger]')?.focus();
+      }
+    });
+
+    sellerDetailList.addEventListener('keydown', (event) => {
+      const trigger = event.target.closest('[data-image-select-trigger]');
+      const option = event.target.closest('[data-image-select-option]');
+
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        closeImageDropdowns();
+        trigger?.focus();
+        return;
+      }
+
+      if (trigger && event.key === 'ArrowDown') {
+        const imageSelect = trigger.closest('[data-image-select]');
+        event.preventDefault();
+        closeImageDropdowns(imageSelect);
+        imageSelect.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        focusSelectedImageOption(imageSelect);
+        return;
+      }
+
+      if (!option || (event.key !== 'ArrowDown' && event.key !== 'ArrowUp')) {
+        return;
+      }
+
+      event.preventDefault();
+      const options = Array.from(option.closest('[data-image-select]').querySelectorAll('[data-image-select-option]'));
+      const currentIndex = options.indexOf(option);
+      const offset = event.key === 'ArrowDown' ? 1 : -1;
+      const nextIndex = (currentIndex + offset + options.length) % options.length;
+      options[nextIndex]?.focus();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('[data-image-select]')) {
+        closeImageDropdowns();
+      }
+    });
+
+		    sellerDetailList.addEventListener('change', (event) => {
+		      const select = event.target.closest('[data-seller-model-select], [data-seller-case-select]');
+
+		      if (select?.matches('[data-seller-case-select]')) {
+		        updateSellerCaseImage(select);
+		      } else if (select) {
+		        updateSellerPartImage(select);
+		      }
+		    });
+
+    sellerDetailList.addEventListener('input', (event) => {
+      const priceInput = event.target.closest('[data-seller-price-input]');
+      const detailCard = priceInput?.closest('[data-seller-detail-card]');
+
+      if (!detailCard) {
+        return;
+      }
+
+      if (priceInput) {
+        sellerPartPrices[detailCard.dataset.sellerPart] = priceInput.value;
+      }
+    });
+
+    function setBuyerStep(step) {
+      buyerStep = step;
+      const content = buyerStepContent[buyerStep];
+      document.getElementById('buyer-title').textContent = content.title;
+      buyerStepLabel.textContent = content.label;
+      buyerStepCopy.textContent = content.copy;
+      buyerNextButton.textContent = content.next;
+      buyerPrevButton.hidden = buyerStep === 1;
+      buyerNextButton.hidden = buyerStep === 3;
+      buyerNextButton.disabled = buyerStep === 1 && !selectedBuyerPart;
+      requestSuccess.hidden = true;
+
+      buyerSteps.forEach((stepElement) => {
+        const isActive = Number(stepElement.dataset.buyerStep) === buyerStep;
+        stepElement.hidden = !isActive;
+        stepElement.classList.toggle('is-active', isActive);
+      });
+
+      buyerProgressSteps.forEach((stepElement) => {
+        stepElement.classList.toggle('is-active', Number(stepElement.dataset.buyerProgressStep) <= buyerStep);
+      });
+
+      if (buyerStep === 3) {
+        renderBuyerSelectedPart();
+      }
+
+      buyerModal.scrollTop = 0;
     }
 
     function setSellerStep(step) {
@@ -511,6 +1228,43 @@
 
       sellerModal.scrollTop = 0;
     }
+
+    buyerPartButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedBuyerPart = button.dataset.buyerPart;
+        buyerPartButtons.forEach((partButton) => {
+          partButton.setAttribute('aria-pressed', String(partButton === button));
+        });
+        buyerNextButton.disabled = false;
+      });
+    });
+
+    buyerModelButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedBuyerModel = button.dataset.buyerModel;
+        buyerModelButtons.forEach((modelButton) => {
+          modelButton.setAttribute('aria-pressed', String(modelButton === button));
+        });
+      });
+    });
+
+    buyerNextButton.addEventListener('click', () => {
+      if (buyerStep < 3) {
+        setBuyerStep(buyerStep + 1);
+      }
+    });
+
+    buyerPrevButton.addEventListener('click', () => {
+      if (buyerStep > 1) {
+        setBuyerStep(buyerStep - 1);
+      }
+    });
+
+    buyerRequestForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      requestSuccess.hidden = false;
+      buyerRequestForm.reset();
+    });
 
     sellerPartButtons.forEach((button) => {
       button.addEventListener('click', () => {
