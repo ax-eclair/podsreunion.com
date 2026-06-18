@@ -383,7 +383,8 @@ body > footer:not(.site-footer) a:hover {
 
 .modal-wide:has([data-seller-step="2"].is-active) {
   width: min(960px, calc(100vw - 36px));
-  padding: 18px 20px;
+  max-height: min(860px, calc(100vh - 8px));
+  padding: 14px 18px;
 }
 
 .modal h2 {
@@ -399,8 +400,9 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) h2 {
-  margin-top: 14px;
-  font-size: clamp(1.85rem, 3vw, 2.45rem);
+  margin-left: 44px;
+  margin-top: 4px;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
 }
 
 .modal-copy {
@@ -410,8 +412,14 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .modal-copy {
-  margin-top: 7px;
-  font-size: 0.94rem;
+  margin-left: 44px;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  line-height: 1.25;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .modal-step {
+  display: none;
 }
 
 .icon-button {
@@ -465,6 +473,26 @@ body > footer:not(.site-footer) a:hover {
 .modal-back {
   top: 18px;
   left: 18px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .icon-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .modal-close,
+.modal-wide:has([data-seller-step="2"].is-active) .modal-back {
+  top: 12px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .modal-close {
+  right: 14px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .modal-back {
+  left: 14px;
 }
 
 .modal-back svg {
@@ -588,26 +616,38 @@ body > footer:not(.site-footer) a:hover {
 
 .buyer-progress,
 .seller-progress {
-  margin-top: 20px;
+  width: min(210px, 100%);
+  margin: 20px auto 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 54px);
+  justify-content: center;
   gap: 8px;
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .seller-progress {
-  margin-top: 14px;
+  margin: 9px auto 0;
 }
 
 .buyer-progress span,
 .seller-progress span {
-  height: 4px;
+  height: 6px;
   border-radius: 999px;
   background: var(--surface-muted);
 }
 
-.buyer-progress span.is-active,
-.seller-progress span.is-active {
-  background: var(--text);
+.buyer-progress span:nth-child(1).is-active,
+.seller-progress span:nth-child(1).is-active {
+  background: linear-gradient(90deg, #ff7a4d, #fb7185);
+}
+
+.buyer-progress span:nth-child(2).is-active,
+.seller-progress span:nth-child(2).is-active {
+  background: linear-gradient(90deg, #ffb34d, #fde047);
+}
+
+.buyer-progress span:nth-child(3).is-active,
+.seller-progress span:nth-child(3).is-active {
+  background: linear-gradient(90deg, #fde047, #fb7185);
 }
 
 .buyer-step,
@@ -616,7 +656,7 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .seller-step {
-  margin-top: 14px;
+  margin-top: 9px;
 }
 
 .buyer-part-grid {
@@ -1020,7 +1060,7 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .seller-detail-card {
-  padding: 14px;
+  padding: 12px;
 }
 
 .seller-detail-card:has(.image-select.is-open) {
@@ -1034,6 +1074,11 @@ body > footer:not(.site-footer) a:hover {
   align-items: center;
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head {
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 10px;
+}
+
 .seller-detail-head img {
   width: 76px;
   height: 76px;
@@ -1043,13 +1088,19 @@ body > footer:not(.site-footer) a:hover {
   background: var(--surface-muted);
 }
 
+.modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head img {
+  width: 60px;
+  height: 60px;
+  padding: 6px;
+}
+
 .seller-detail-head h3 {
   font-size: 1.42rem;
   line-height: 1.1;
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .seller-detail-head h3 {
-  font-size: 1.24rem;
+  font-size: 1.16rem;
 }
 
 .seller-form-section {
@@ -1057,12 +1108,27 @@ body > footer:not(.site-footer) a:hover {
 }
 
 .modal-wide:has([data-seller-step="2"].is-active) .seller-form-section {
-  margin-top: 22px;
+  margin-top: 12px;
+}
+
+.modal-wide:has([data-seller-step="2"].is-active) .section-note {
+  margin-top: 4px;
+  max-width: none;
+  font-size: 0.86rem;
+  line-height: 1.25;
 }
 
 .seller-form-section h4 {
   font-size: 1rem;
   line-height: 1.15;
+}
+
+.section-note {
+  margin-top: 7px;
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .seller-model-grid {
@@ -1123,9 +1189,6 @@ body > footer:not(.site-footer) a:hover {
   border: 0;
   border-radius: 20px;
   background: linear-gradient(180deg, #fff7f3, #fff0ee);
-  box-shadow:
-    0 9px 18px rgba(251, 113, 133, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
   color: #7b160c;
 }
 
@@ -1160,7 +1223,6 @@ body > footer:not(.site-footer) a:hover {
   border: 0;
   border-radius: 15px;
   background: linear-gradient(145deg, #ff7a4d, var(--dropdown-accent-start));
-  box-shadow: 0 7px 14px rgba(251, 113, 133, 0.24);
   pointer-events: none;
   transform: translateY(-50%);
 }
@@ -1222,9 +1284,6 @@ body > footer:not(.site-footer) a:hover {
   background: linear-gradient(180deg, #fff7f3, #fff0ee);
   color: var(--text);
   cursor: pointer;
-  box-shadow:
-    0 9px 18px rgba(251, 113, 133, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
   transition: none;
 }
 
@@ -1290,7 +1349,6 @@ body > footer:not(.site-footer) a:hover {
   justify-self: end;
   border-radius: 15px;
   background: linear-gradient(145deg, #ff7a4d, var(--dropdown-accent-start));
-  box-shadow: 0 7px 14px rgba(251, 113, 133, 0.24);
   transition: transform 140ms ease;
 }
 
@@ -1589,6 +1647,10 @@ body > footer:not(.site-footer) a:hover {
 
 .cleaning-check {
   min-height: 22px;
+  margin-top: 8px;
+  align-items: center;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .cleaning-check input,

@@ -675,8 +675,8 @@
       },
       2: {
         label: 'Seller flow 2 of 3',
-        title: 'Add part details',
-        copy: 'Each selected part gets its own model check, price, and photo checklist.',
+        title: 'Part details',
+        copy: 'Model, photos, price, and care.',
         next: 'Listing details'
       },
       3: {
@@ -842,14 +842,17 @@
                     </label>
                     <p class="recommended-price-hint">Recommended price: ${data.recommendedPrice}</p>
                   </div>
-
-                  <label class="cleaning-check">
-                    <input type="checkbox">
-                    <span>I cleaned this part before publishing.</span>
-                  </label>
                 </div>
-
               </div>
+            </div>
+
+            <div class="seller-form-section seller-hygiene-section">
+              <h4>Hygiene & care</h4>
+              <p class="section-note">Cleanliness matters: we review it before listing and add a badge when it is verified.</p>
+              <label class="cleaning-check">
+                <input type="checkbox">
+                <span>Cleaned and ready to ship.</span>
+              </label>
             </div>
           </article>
         `;
