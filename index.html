@@ -709,9 +709,20 @@
 	    }
 
 	    function renderConditionSelect(part) {
+	      const conditionHelp = 'Choose the closest honest grade. Photos show the details.';
 	      return `
 	        <div class="seller-select-field condition-field">
-	          <span class="field-title" id="condition-label-${part}">Condition</span>
+	          <span class="field-title" id="condition-label-${part}">
+	            <span>Condition</span>
+	            <button class="model-help-button" type="button" aria-label="Condition grading help" aria-describedby="condition-help-${part}">
+	              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+	                <circle cx="12" cy="12" r="10"></circle>
+	                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+	                <path d="M12 17h.01"></path>
+	              </svg>
+	            </button>
+	            <span class="model-help-tooltip" id="condition-help-${part}" role="tooltip">${conditionHelp}</span>
+	          </span>
 	          <span class="select-shell">
 	            <select data-seller-condition aria-labelledby="condition-label-${part}">
 	              <option value="" selected>Select condition</option>
@@ -722,7 +733,6 @@
 	              <option value="not-sure">Not sure yet</option>
 	            </select>
 	          </span>
-	          <p class="field-hint">Choose the closest honest grade. Photos show the details.</p>
 	        </div>
 	      `;
 	    }

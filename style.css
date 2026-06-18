@@ -1121,12 +1121,6 @@ body > footer:not(.site-footer) a:hover {
   align-self: stretch;
 }
 
-.field-hint {
-  color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.25;
-}
-
 .seller-price-panel {
   margin-top: 14px;
   display: flex;
