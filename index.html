@@ -374,7 +374,6 @@
     const selectedSummary = document.querySelector('[data-selected-summary]');
     const sellerPrevButton = document.querySelector('[data-seller-prev]');
     const sellerNextButton = document.querySelector('[data-seller-next]');
-    const customSelects = new Set();
     let buyerStep = 1;
     let selectedBuyerPart = null;
     let selectedBuyerModel = 'AirPods Pro 1';
@@ -446,22 +445,18 @@
       left: {
         title: 'Left AirPod',
         image: 'assets/airpods/earbuds/airpods-pro-2/left.png',
-        // Replace this with the final model-number close-up asset when available.
-        modelPhoto: 'assets/airpods/earbuds/airpods-pro-2/left.png',
         recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       right: {
         title: 'Right AirPod',
         image: 'assets/airpods/earbuds/airpods-pro-2/right.png',
-        modelPhoto: 'assets/airpods/earbuds/airpods-pro-2/right.png',
         recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       case: {
         title: 'Charging case',
         image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
-        modelPhoto: 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
         recommendedPrice: '59 EUR',
         shots: ['Front closed', 'Back hinge', 'Inside open', 'Charging port', 'Model number', 'LED on', 'Charging proof']
       }
@@ -580,13 +575,6 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeModal();
-        closeCustomSelects();
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.custom-select')) {
-        closeCustomSelects();
       }
     });
 
@@ -631,19 +619,7 @@
 	                </span>
 	                <input type="text" placeholder="e.g. A2699" aria-labelledby="model-number-label-${part}">
 	              </div>
-	              <figure class="model-number-photo">
-	                <img src="${data.modelPhoto}" alt="${data.title} model number photo placeholder">
-	              </figure>
-              <label>
-                <span>Condition</span>
-                <select data-custom-select>
-                  <option>Good</option>
-                  <option>Like new</option>
-                  <option>Used</option>
-                  <option>Damaged</option>
-                  <option>Unknown</option>
-                </select>
-              </label>
+              ${renderConditionSelect(part)}
             </div>
 
             <div class="photo-checklist">
@@ -665,8 +641,6 @@
           </article>
         `;
       }).join('');
-
-	      enhanceCustomSelects(sellerDetailList);
 	      sellerDetailList.querySelectorAll('[data-seller-model-select]').forEach(updateSellerPartImage);
 	      sellerDetailList.querySelectorAll('[data-seller-case-select]').forEach(updateSellerCaseImage);
 	    }
@@ -684,21 +658,23 @@
 	    function renderSellerModelSelect(part) {
 	      if (part === 'case') {
 	        return `
-	          <label>
-	            <span>Charging case model</span>
-	            <select data-custom-select data-seller-case-select>
+	          <label class="seller-select-field">
+	            <span class="field-title" id="case-model-label-${part}">Charging case model</span>
+	            <span class="select-shell">
+	            <select data-seller-case-select aria-labelledby="case-model-label-${part}">
 	              <option value="">I am not sure</option>
-	              <option value="A1602">A1602 - Lightning case for AirPods 1 / 2</option>
-	              <option value="A1938">A1938 - Wireless case for AirPods 1 / 2</option>
-	              <option value="A2566-magsafe">A2566 - MagSafe case for AirPods 3</option>
-	              <option value="A2897-lightning">A2897 - Lightning case for AirPods 3</option>
-	              <option value="A3058">A3058 - Case for AirPods 4</option>
-	              <option value="A3059-ANC">A3059 - Wireless case for AirPods 4 ANC</option>
-	              <option value="A2190">A2190 - Case for AirPods Pro 1</option>
-	              <option value="A2700-magsafe-lightning">A2700 - MagSafe case for AirPods Pro 2 Lightning</option>
-	              <option value="A2968-magsafe-lightning">A2968 - MagSafe case for AirPods Pro 2 USB-C</option>
-	              <option value="A3122-magsafe">A3122 - MagSafe case for AirPods Pro 3 USB-C</option>
+	              <option value="A1602">A1602 - AirPods 1/2 Lightning</option>
+	              <option value="A1938">A1938 - AirPods 1/2 Wireless</option>
+	              <option value="A2566-magsafe">A2566 - AirPods 3 MagSafe</option>
+	              <option value="A2897-lightning">A2897 - AirPods 3 Lightning</option>
+	              <option value="A3058">A3058 - AirPods 4</option>
+	              <option value="A3059-ANC">A3059 - AirPods 4 ANC</option>
+	              <option value="A2190">A2190 - AirPods Pro 1</option>
+	              <option value="A2700-magsafe-lightning">A2700 - Pro 2 Lightning</option>
+	              <option value="A2968-magsafe-lightning">A2968 - Pro 2 USB-C</option>
+	              <option value="A3122-magsafe">A3122 - Pro 3 USB-C</option>
 	            </select>
+	            </span>
 	          </label>
 	        `;
 	      }
@@ -715,17 +691,38 @@
 	              </svg>
 	            </a>
 	          </span>
-	          <select data-custom-select data-seller-model-select aria-labelledby="airpods-model-label-${part}">
-	            <option value="airpods-pro-1">AirPods Pro 1</option>
-	            <option value="airpods-pro-2">AirPods Pro 2</option>
-	            <option value="airpods-pro-3">AirPods Pro 3</option>
-	            <option value="airpods-1">AirPods 1</option>
-	            <option value="airpods-2">AirPods 2</option>
-	            <option value="airpods-3">AirPods 3</option>
-	            <option value="airpods-4">AirPods 4</option>
-	            <option value="airpods-4-anc">AirPods 4 ANC</option>
-	            <option value="unknown">I am not sure</option>
-	          </select>
+	          <span class="select-shell">
+	            <select data-seller-model-select aria-labelledby="airpods-model-label-${part}">
+	              <option value="airpods-pro-1">AirPods Pro 1</option>
+	              <option value="airpods-pro-2">AirPods Pro 2</option>
+	              <option value="airpods-pro-3">AirPods Pro 3</option>
+	              <option value="airpods-1">AirPods 1</option>
+	              <option value="airpods-2">AirPods 2</option>
+	              <option value="airpods-3">AirPods 3</option>
+	              <option value="airpods-4">AirPods 4</option>
+	              <option value="airpods-4-anc">AirPods 4 ANC</option>
+	              <option value="unknown">I am not sure</option>
+	            </select>
+	          </span>
+	        </div>
+	      `;
+	    }
+
+	    function renderConditionSelect(part) {
+	      return `
+	        <div class="seller-select-field condition-field">
+	          <span class="field-title" id="condition-label-${part}">Condition</span>
+	          <span class="select-shell">
+	            <select data-seller-condition aria-labelledby="condition-label-${part}">
+	              <option value="" selected>Select condition</option>
+	              <option value="excellent">Excellent - almost new</option>
+	              <option value="good">Good - light wear</option>
+	              <option value="fair">Fair - visible wear</option>
+	              <option value="damaged">Damaged - repair</option>
+	              <option value="not-sure">Not sure yet</option>
+	            </select>
+	          </span>
+	          <p class="field-hint">Choose the closest honest grade. Photos show the details.</p>
 	        </div>
 	      `;
 	    }
@@ -755,87 +752,6 @@
 	      image.src = chargingCaseImages[select.value] || sellerPartPlaceholderImages.case;
 	      image.alt = 'Charging case preview';
 	    }
-
-    function closeCustomSelects(except) {
-      customSelects.forEach((control) => {
-        if (control !== except) {
-          control.classList.remove('is-open');
-          control.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    function enhanceCustomSelects(root = document) {
-      root.querySelectorAll('select[data-custom-select]:not([data-enhanced])').forEach((select) => {
-        select.dataset.enhanced = 'true';
-        select.classList.add('native-select');
-
-        const control = document.createElement('div');
-        control.className = 'custom-select';
-
-        const trigger = document.createElement('button');
-        trigger.type = 'button';
-        trigger.className = 'custom-select-trigger';
-        trigger.setAttribute('aria-haspopup', 'listbox');
-        trigger.setAttribute('aria-expanded', 'false');
-
-	        const value = document.createElement('span');
-	        value.textContent = select.options[select.selectedIndex]?.textContent || '';
-	        const labelledBy = select.getAttribute('aria-labelledby');
-	        const labelText = labelledBy ? document.getElementById(labelledBy)?.textContent.trim() : '';
-
-	        const chevron = document.createElement('span');
-	        chevron.className = 'custom-select-chevron';
-        chevron.setAttribute('aria-hidden', 'true');
-        chevron.textContent = 'v';
-
-	        trigger.append(value, chevron);
-	        const updateTriggerLabel = () => {
-	          if (labelText) {
-	            trigger.setAttribute('aria-label', `${labelText}: ${value.textContent}`);
-	          }
-	        };
-	        updateTriggerLabel();
-
-	        const list = document.createElement('div');
-        list.className = 'custom-select-list';
-        list.setAttribute('role', 'listbox');
-
-        Array.from(select.options).forEach((option, index) => {
-          const item = document.createElement('button');
-          item.type = 'button';
-          item.className = 'custom-select-option';
-          item.setAttribute('role', 'option');
-          item.setAttribute('aria-selected', String(index === select.selectedIndex));
-          item.textContent = option.textContent;
-
-	          item.addEventListener('click', () => {
-	            select.selectedIndex = index;
-	            value.textContent = option.textContent;
-	            updateTriggerLabel();
-	            list.querySelectorAll('.custom-select-option').forEach((optionButton, optionIndex) => {
-              optionButton.setAttribute('aria-selected', String(optionIndex === index));
-            });
-            select.dispatchEvent(new Event('change', { bubbles: true }));
-            control.classList.remove('is-open');
-            trigger.setAttribute('aria-expanded', 'false');
-          });
-
-          list.append(item);
-        });
-
-        trigger.addEventListener('click', () => {
-          const isOpen = control.classList.contains('is-open');
-          closeCustomSelects(control);
-          control.classList.toggle('is-open', !isOpen);
-          trigger.setAttribute('aria-expanded', String(!isOpen));
-        });
-
-        control.append(trigger, list);
-        select.insertAdjacentElement('afterend', control);
-        customSelects.add(control);
-      });
-    }
 
 	    sellerDetailList.addEventListener('change', (event) => {
 	      const select = event.target.closest('[data-seller-model-select], [data-seller-case-select]');
