@@ -384,6 +384,16 @@
       right: '',
       case: ''
     };
+    const sellerPartCommentEnabled = {
+      left: false,
+      right: false,
+      case: false
+    };
+    const sellerPartComments = {
+      left: '',
+      right: '',
+      case: ''
+    };
 
 	    const airPodsModelImages = {
 	      'airpods-pro-1': {
@@ -585,6 +595,8 @@
 	        const data = sellerPartData[part];
 	        const modelHelp = part === 'case' ? 'The model number is printed inside the lid.' : 'The model number is printed on the stem.';
 	        const savedPrice = escapeHtml(sellerPartPrices[part] || '');
+	        const savedComment = escapeHtml(sellerPartComments[part] || '');
+	        const isCommentEnabled = sellerPartCommentEnabled[part];
 	        const shotList = data.shots.map((shot, index) => `
 	          <label class="photo-slot">
 	            <input type="file" accept="image/*">
@@ -638,6 +650,17 @@
               <input type="checkbox">
               <span>I cleaned this part before publishing.</span>
             </label>
+
+            <div class="seller-comment-box">
+              <label class="seller-comment-toggle">
+                <input type="checkbox" data-seller-comment-toggle ${isCommentEnabled ? 'checked' : ''}>
+                <span>Add a private note for the PodsReunion team</span>
+              </label>
+              <label class="seller-comment-field" ${isCommentEnabled ? '' : 'hidden'}>
+                <span>Only our team will see this</span>
+                <textarea rows="3" placeholder="I am not fully sure about the model number or condition." data-seller-comment-input>${savedComment}</textarea>
+              </label>
+            </div>
           </article>
         `;
       }).join('');
@@ -765,23 +788,43 @@
 
 	    sellerDetailList.addEventListener('change', (event) => {
 	      const select = event.target.closest('[data-seller-model-select], [data-seller-case-select]');
+	      const commentToggle = event.target.closest('[data-seller-comment-toggle]');
 
 	      if (select?.matches('[data-seller-case-select]')) {
 	        updateSellerCaseImage(select);
 	      } else if (select) {
 	        updateSellerPartImage(select);
 	      }
+
+	      if (commentToggle) {
+	        const detailCard = commentToggle.closest('[data-seller-detail-card]');
+	        const commentField = detailCard?.querySelector('.seller-comment-field');
+
+	        if (!detailCard || !commentField) {
+	          return;
+	        }
+
+	        sellerPartCommentEnabled[detailCard.dataset.sellerPart] = commentToggle.checked;
+	        commentField.hidden = !commentToggle.checked;
+	      }
 	    });
 
     sellerDetailList.addEventListener('input', (event) => {
       const priceInput = event.target.closest('[data-seller-price-input]');
-      const detailCard = priceInput?.closest('[data-seller-detail-card]');
+      const commentInput = event.target.closest('[data-seller-comment-input]');
+      const detailCard = (priceInput || commentInput)?.closest('[data-seller-detail-card]');
 
-      if (!priceInput || !detailCard) {
+      if (!detailCard) {
         return;
       }
 
-      sellerPartPrices[detailCard.dataset.sellerPart] = priceInput.value;
+      if (priceInput) {
+        sellerPartPrices[detailCard.dataset.sellerPart] = priceInput.value;
+      }
+
+      if (commentInput) {
+        sellerPartComments[detailCard.dataset.sellerPart] = commentInput.value;
+      }
     });
 
     function setBuyerStep(step) {

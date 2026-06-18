@@ -1044,6 +1044,7 @@ body > footer:not(.site-footer) a:hover {
 
 .seller-model-grid input,
 .seller-model-grid select,
+.seller-comment-field textarea,
 .seller-price-panel input,
 .listing-form input {
   width: 100%;
@@ -1053,6 +1054,17 @@ body > footer:not(.site-footer) a:hover {
   border-radius: 8px;
   background: var(--surface);
   color: var(--text);
+}
+
+.seller-comment-field textarea {
+  min-height: 92px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  resize: vertical;
+}
+
+.seller-comment-field textarea::placeholder {
+  color: #b5b5ba;
 }
 
 .select-shell {
@@ -1221,6 +1233,7 @@ body > footer:not(.site-footer) a:hover {
 
 .seller-model-grid input:focus,
 .seller-model-grid select:focus,
+.seller-comment-field textarea:focus,
 .seller-price-panel input:focus,
 .listing-form input:focus {
   outline: none;
@@ -1298,6 +1311,42 @@ body > footer:not(.site-footer) a:hover {
   height: 18px;
   margin-top: 2px;
   accent-color: var(--text);
+}
+
+.seller-comment-box {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.seller-comment-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.seller-comment-toggle input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--text);
+}
+
+.seller-comment-field {
+  display: grid;
+  gap: 7px;
+}
+
+.seller-comment-field[hidden] {
+  display: none;
+}
+
+.seller-comment-field > span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
 }
 
 .seller-toggle-row {
