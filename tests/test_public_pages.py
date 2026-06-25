@@ -15,6 +15,7 @@ def test_public_pages_return_200(client, path):
         "/static/logo.png",
         "/static/assets/favicons/favicon-32x32.png",
         "/static/assets/logo/logo-master.svg",
+        "/static/assets/hero/airpods-reunion-hero.mp4",
         "/static/assets/airpods/products/web/airpods-pro-2-with-case-front.png",
     ],
 )
