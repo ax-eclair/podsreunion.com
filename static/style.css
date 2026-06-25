@@ -212,12 +212,36 @@ body > header:not(.site-header) {
 }
 
 .hero-product {
+  --hero-product-scroll-y: 0px;
   position: absolute;
   z-index: 2;
   width: clamp(280px, 28vw, 460px);
   max-height: min(44svh, 460px);
   object-fit: contain;
   filter: drop-shadow(0 28px 30px rgba(0, 0, 0, 0.14));
+  transform: translate3d(0, var(--hero-product-scroll-y), 0);
+  animation: hero-product-entrance 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+  will-change: transform;
+}
+
+@keyframes hero-product-entrance {
+  from {
+    opacity: 0;
+    transform: translate3d(0, calc(var(--hero-product-scroll-y) - 28px), 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, var(--hero-product-scroll-y), 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-product {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
 }
 
 .hero-actions {

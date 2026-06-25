@@ -531,6 +531,8 @@
     const pathButtons = document.querySelectorAll('[data-open-path]');
     const supportedTabs = document.querySelectorAll('[data-supported-tab]');
     const supportedPanels = document.querySelectorAll('[data-supported-panel]');
+    const hero = document.querySelector('.hero');
+    const heroProduct = document.querySelector('.hero-product');
     const heroScrollVideo = document.querySelector('[data-scroll-video]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
@@ -932,6 +934,37 @@
     }
 
     initializeHeroScrollVideo();
+
+    function initializeHeroProductMotion() {
+      if (!hero || !heroProduct || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      let ticking = false;
+
+      function renderMotion() {
+        const scrollRange = Math.max(window.innerHeight * 0.45, 1);
+        const progress = clamp(window.scrollY / scrollRange, 0, 1);
+        const lift = window.matchMedia('(max-width: 620px)').matches ? -28 : -56;
+        heroProduct.style.setProperty('--hero-product-scroll-y', `${Math.round(progress * lift)}px`);
+        ticking = false;
+      }
+
+      function requestMotionFrame() {
+        if (ticking) {
+          return;
+        }
+
+        ticking = true;
+        window.requestAnimationFrame(renderMotion);
+      }
+
+      renderMotion();
+      window.addEventListener('scroll', requestMotionFrame, { passive: true });
+      window.addEventListener('resize', requestMotionFrame);
+    }
+
+    initializeHeroProductMotion();
 
     function renderBuyerSelectedPart() {
       if (!selectedBuyerPart) {
