@@ -46,7 +46,7 @@
       </div>
 
       <div class="hero-product" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata" poster="{% static 'assets/hero/airpods-reunion-hero-poster.png' %}">
+        <video muted playsinline preload="auto" poster="{% static 'assets/hero/airpods-reunion-hero-poster.png' %}" data-scroll-video>
           <source src="{% static 'assets/hero/airpods-reunion-hero.mp4' %}" type="video/mp4">
         </video>
       </div>
@@ -534,6 +534,7 @@
     const pathButtons = document.querySelectorAll('[data-open-path]');
     const supportedTabs = document.querySelectorAll('[data-supported-tab]');
     const supportedPanels = document.querySelectorAll('[data-supported-panel]');
+    const heroScrollVideo = document.querySelector('[data-scroll-video]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
     const buyerStepLabel = document.querySelector('[data-buyer-step-label]');
@@ -867,6 +868,82 @@
         next: 'Done'
       }
     };
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function initializeHeroScrollVideo() {
+      if (!heroScrollVideo || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      let duration = 0;
+      let targetTime = 0;
+      let renderedTime = 0;
+      let frameRequest = null;
+
+      function scrollDuration() {
+        return Math.max(window.innerHeight * 1.65, 1);
+      }
+
+      function updateTargetTime() {
+        if (!duration) {
+          return;
+        }
+
+        const progress = clamp(window.scrollY / scrollDuration(), 0, 1);
+        targetTime = progress * duration;
+        requestAnimationFrameIfNeeded();
+      }
+
+      function renderFrame() {
+        frameRequest = null;
+
+        if (!duration) {
+          return;
+        }
+
+        const delta = targetTime - renderedTime;
+
+        if (Math.abs(delta) < 0.01) {
+          renderedTime = targetTime;
+        } else {
+          renderedTime += delta * 0.16;
+          requestAnimationFrameIfNeeded();
+        }
+
+        heroScrollVideo.currentTime = clamp(renderedTime, 0, duration);
+      }
+
+      function requestAnimationFrameIfNeeded() {
+        if (!frameRequest) {
+          frameRequest = window.requestAnimationFrame(renderFrame);
+        }
+      }
+
+      function initializeDuration() {
+        duration = heroScrollVideo.duration || 0;
+        heroScrollVideo.pause();
+        heroScrollVideo.currentTime = 0;
+        renderedTime = 0;
+        targetTime = 0;
+        updateTargetTime();
+      }
+
+      heroScrollVideo.pause();
+
+      if (heroScrollVideo.readyState >= 1) {
+        initializeDuration();
+      } else {
+        heroScrollVideo.addEventListener('loadedmetadata', initializeDuration, { once: true });
+      }
+
+      window.addEventListener('scroll', updateTargetTime, { passive: true });
+      window.addEventListener('resize', updateTargetTime);
+    }
+
+    initializeHeroScrollVideo();
 
     function renderBuyerSelectedPart() {
       if (!selectedBuyerPart) {
