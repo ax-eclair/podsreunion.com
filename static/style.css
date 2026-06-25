@@ -209,11 +209,18 @@ h1 {
   place-items: center;
 }
 
-.hero-product img {
+.hero-product img,
+.hero-product video {
   width: min(610px, 100%);
   max-height: 680px;
   object-fit: contain;
   filter: drop-shadow(0 34px 34px rgba(29, 29, 31, 0.14));
+}
+
+.hero-product video {
+  display: block;
+  border: 0;
+  background: transparent;
 }
 
 .section-heading {
