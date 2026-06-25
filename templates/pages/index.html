@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
   <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-<body class="has-modal">
+<body>
   <header class="site-header" aria-label="Primary">
     <a class="brand" href="/" aria-label="PodsReunion home">
       <span class="brand-mark" aria-hidden="true">
@@ -30,43 +30,198 @@
     </nav>
   </header>
 
-  <main class="page-shell">
-    <section class="intro" aria-labelledby="intro-title">
-      <p class="eyebrow">PodsReunion marketplace</p>
-      <h1 id="intro-title">Find the missing part, or give yours a second life.</h1>
-      <p class="intro-copy">
-        A focused place for single AirPods, left and right earbuds, and charging cases.
-      </p>
+  <main class="home-page">
+    <section class="hero-section" aria-labelledby="intro-title">
+      <div class="hero-copy">
+        <p class="eyebrow">PodsReunion marketplace</p>
+        <h1 id="intro-title">Lost one AirPod? Don&rsquo;t buy a whole new set.</h1>
+        <p class="intro-copy">
+          Find compatible single AirPods and charging cases from people who have the part you need.
+        </p>
 
-      <div class="intro-actions" aria-label="Start">
-        <button class="primary-action" type="button" data-open-path="buyer">I need an AirPod or case</button>
-        <button class="secondary-action" type="button" data-open-path="seller">I want to sell one</button>
+        <div class="intro-actions" aria-label="Start">
+          <button class="primary-action" type="button" data-open-path="seller">I have a single AirPod</button>
+          <button class="secondary-action" type="button" data-open-path="buyer">I lost one AirPod</button>
+        </div>
+      </div>
+
+      <div class="hero-product" aria-hidden="true">
+        <img src="{% static 'assets/airpods/earbuds/airpods-pro-3/right.png' %}" alt="">
       </div>
     </section>
 
-    <section class="market-preview" aria-label="Marketplace preview">
-      <div class="preview-panel preview-panel-large">
-        <div class="preview-copy">
-          <span class="panel-kicker">Available soon</span>
-          <h2>AirPods Pro 2 parts</h2>
-          <p>Compatible listings will appear here once the marketplace is connected.</p>
-        </div>
-        <img src="{% static 'assets/airpods/products/web/airpods-pro-2-with-case-front.png' %}" alt="AirPods Pro with charging case">
+    <section class="steps-section" aria-labelledby="steps-title">
+      <div class="section-heading">
+        <p class="eyebrow">How it works</p>
+        <h2 id="steps-title">From missing piece to useful again.</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-item">
+          <span>1</span>
+          <h3>Pick the part</h3>
+          <p>Start with the exact AirPod or charging case involved.</p>
+        </article>
+        <article class="step-item">
+          <span>2</span>
+          <h3>Match with someone compatible</h3>
+          <p>Model and part type guide the match before anything gets complicated.</p>
+        </article>
+        <article class="step-item">
+          <span>3</span>
+          <h3>Verify, unlock, and reunite</h3>
+          <p>Trust signals help both sides understand what is ready to use.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust-section" aria-labelledby="trust-title">
+      <div class="section-heading">
+        <p class="eyebrow">Built for trust</p>
+        <h2 id="trust-title">Small parts still need careful signals.</h2>
+      </div>
+      <div class="trust-grid">
+        <article>
+          <h3>Matched by model</h3>
+          <p>Compatible AirPods and cases are matched by generation and part type.</p>
+        </article>
+        <article>
+          <h3>Checked before trust badges</h3>
+          <p>Photos, condition, and Find My unlock evidence can be reviewed before stronger trust signals appear.</p>
+        </article>
+        <article>
+          <h3>Less waste, more use</h3>
+          <p>A single missing piece should not turn a working set into electronic waste.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="supported-section" aria-labelledby="supported-title">
+      <div class="section-heading section-heading-centered">
+        <p class="eyebrow">Catalogue</p>
+        <h2 id="supported-title">Supported parts</h2>
       </div>
 
-      <div class="preview-grid">
-        <article class="mini-panel">
-          <span class="mini-label">Verified photos</span>
-          <strong>Model and condition badges</strong>
-        </article>
-        <article class="mini-panel">
-          <span class="mini-label">Fast search</span>
-          <strong>Left, right, or charging case</strong>
-        </article>
-        <article class="mini-panel">
-          <span class="mini-label">Lightweight start</span>
-          <strong>No dashboard before you need one</strong>
-        </article>
+      <div class="supported-tabs" role="tablist" aria-label="Supported part type">
+        <button class="supported-tab is-active" type="button" role="tab" id="tab-airpods" aria-selected="true" aria-controls="panel-airpods" data-supported-tab="airpods">AirPods</button>
+        <button class="supported-tab" type="button" role="tab" id="tab-cases" aria-selected="false" aria-controls="panel-cases" data-supported-tab="cases">Charging cases</button>
+      </div>
+
+      <div class="supported-panel is-active" role="tabpanel" id="panel-airpods" aria-labelledby="tab-airpods" data-supported-panel="airpods">
+        <div class="parts-grid">
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-3/left.png' %}" alt="">
+            <span>AirPods Pro 3 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-3/right.png' %}" alt="">
+            <span>AirPods Pro 3 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/left.png' %}" alt="">
+            <span>AirPods Pro 2 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
+            <span>AirPods Pro 2 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-1/left.png' %}" alt="">
+            <span>AirPods Pro 1 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-1/right.png' %}" alt="">
+            <span>AirPods Pro 1 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-4-anc/left.png' %}" alt="">
+            <span>AirPods 4 ANC Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-4-anc/right.png' %}" alt="">
+            <span>AirPods 4 ANC Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-4/left.png' %}" alt="">
+            <span>AirPods 4 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-4/right.png' %}" alt="">
+            <span>AirPods 4 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-3/left.png' %}" alt="">
+            <span>AirPods 3 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-3/right.png' %}" alt="">
+            <span>AirPods 3 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-2/left.png' %}" alt="">
+            <span>AirPods 2 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-2/right.png' %}" alt="">
+            <span>AirPods 2 Right</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-1/left.png' %}" alt="">
+            <span>AirPods 1 Left</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/earbuds/airpods-1/right.png' %}" alt="">
+            <span>AirPods 1 Right</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="supported-panel" role="tabpanel" id="panel-cases" aria-labelledby="tab-cases" data-supported-panel="cases" hidden>
+        <div class="parts-grid parts-grid-cases">
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A3122-magsafe.png' %}" alt="">
+            <span>AirPods Pro 3 MagSafe Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}" alt="">
+            <span>AirPods Pro 2 USB-C Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A2700-magsafe-lightning.png' %}" alt="">
+            <span>AirPods Pro 2 Lightning Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A2190.png' %}" alt="">
+            <span>AirPods Pro 1 Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A1290-magsafe.png' %}" alt="">
+            <span>A1290 MagSafe Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A3059-ANC.png' %}" alt="">
+            <span>AirPods 4 ANC Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A3058.png' %}" alt="">
+            <span>AirPods 4 Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A2566-magsafe.png' %}" alt="">
+            <span>AirPods 3 MagSafe Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A2897-lightning.png' %}" alt="">
+            <span>AirPods 3 Lightning Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A1938.png' %}" alt="">
+            <span>AirPods 2 Wireless Case</span>
+          </button>
+          <button class="part-tile" type="button">
+            <img src="{% static 'assets/airpods/cases/web/A1602.png' %}" alt="">
+            <span>AirPods 1/2 Lightning Case</span>
+          </button>
+        </div>
       </div>
     </section>
   </main>
@@ -79,7 +234,7 @@
     </div>
   </footer>
 
-  <div class="modal-layer is-visible" data-modal-layer>
+  <div class="modal-layer" data-modal-layer>
     <section class="modal is-active" role="dialog" aria-modal="true" aria-labelledby="entry-title" data-modal="entry">
       <button class="icon-button modal-close" type="button" data-close-modal aria-label="Close modal">
         <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
@@ -92,22 +247,22 @@
       <p class="modal-copy">Choose the path that fits what you need today.</p>
 
       <div class="choice-grid">
-        <button class="choice-card" type="button" data-open-path="buyer">
-          <span class="choice-visual">
-            <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
-          </span>
-          <span>
-            <strong>I need an AirPod or case</strong>
-            <small>Find compatible listings quickly.</small>
-          </span>
-        </button>
         <button class="choice-card" type="button" data-open-path="seller">
           <span class="choice-visual">
             <img src="{% static 'assets/airpods/products/web/airpods-3-with-case.png' %}" alt="">
           </span>
           <span>
-            <strong>I want to sell one</strong>
+            <strong>I have a single AirPod</strong>
             <small>Publish a part and add trust badges later.</small>
+          </span>
+        </button>
+        <button class="choice-card" type="button" data-open-path="buyer">
+          <span class="choice-visual">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
+          </span>
+          <span>
+            <strong>I lost one AirPod</strong>
+            <small>Find compatible listings quickly.</small>
           </span>
         </button>
       </div>
@@ -375,6 +530,8 @@
     const modalLayer = document.querySelector('[data-modal-layer]');
     const modals = document.querySelectorAll('[data-modal]');
     const pathButtons = document.querySelectorAll('[data-open-path]');
+    const supportedTabs = document.querySelectorAll('[data-supported-tab]');
+    const supportedPanels = document.querySelectorAll('[data-supported-panel]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
     const entryButtons = document.querySelectorAll('[data-show-entry]');
     const buyerStepLabel = document.querySelector('[data-buyer-step-label]');
@@ -755,6 +912,24 @@
 
     pathButtons.forEach((button) => {
       button.addEventListener('click', () => showModal(button.dataset.openPath));
+    });
+
+    supportedTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selectedPanel = tab.dataset.supportedTab;
+
+        supportedTabs.forEach((candidate) => {
+          const isActive = candidate === tab;
+          candidate.classList.toggle('is-active', isActive);
+          candidate.setAttribute('aria-selected', String(isActive));
+        });
+
+        supportedPanels.forEach((panel) => {
+          const isActive = panel.dataset.supportedPanel === selectedPanel;
+          panel.hidden = !isActive;
+          panel.classList.toggle('is-active', isActive);
+        });
+      });
     });
 
     closeButtons.forEach((button) => {
