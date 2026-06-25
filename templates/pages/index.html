@@ -31,24 +31,18 @@
   </header>
 
   <main class="home-page">
-    <section class="hero-section" aria-labelledby="intro-title">
-      <div class="hero-copy">
-        <p class="eyebrow">PodsReunion marketplace</p>
-        <h1 id="intro-title">Lost one AirPod? Don&rsquo;t buy a whole new set.</h1>
-        <p class="intro-copy">
-          Find compatible single AirPods and charging cases from people who have the part you need.
-        </p>
-
-        <div class="intro-actions" aria-label="Start">
-          <button class="primary-action" type="button" data-open-path="seller">I have a single AirPod</button>
-          <button class="secondary-action" type="button" data-open-path="buyer">I lost one AirPod</button>
-        </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-stage">
+        <h1 id="hero-title">Lost one?</h1>
+        <img src="{% static 'assets/airpods/products/web/airpods-pro-3-earbuds.png' %}" alt="AirPods Pro earbuds" class="hero-product">
       </div>
 
-      <div class="hero-product" aria-hidden="true">
-        <video muted playsinline preload="auto" poster="{% static 'assets/hero/airpods-reunion-hero-poster.png' %}" data-scroll-video>
-          <source src="{% static 'assets/hero/airpods-reunion-hero.mp4' %}" type="video/mp4">
-        </video>
+      <div class="hero-actions" aria-label="Start">
+        <p>Find a matching AirPod or sell the spare one you already have.</p>
+        <div class="hero-action-buttons">
+          <button class="primary-action" type="button" data-open-path="buyer">I need an AirPod or case</button>
+          <button class="secondary-action" type="button" data-open-path="seller">I want to sell one</button>
+        </div>
       </div>
     </section>
 
