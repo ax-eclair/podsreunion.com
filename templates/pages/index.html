@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +10,15 @@
   <meta property="og:description" content="Find or sell a single AirPod, a charging case, or a compatible replacement part.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://podsreunion.com">
-  <link rel="icon" type="image/png" href="assets/favicons/favicon-32x32.png">
-  <link rel="apple-touch-icon" href="assets/favicons/apple-icon-180x180.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="{% static 'assets/favicons/favicon-32x32.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body class="has-modal">
   <header class="site-header" aria-label="Primary">
     <a class="brand" href="/" aria-label="PodsReunion home">
       <span class="brand-mark" aria-hidden="true">
-        <img src="assets/logo/logo-master.svg" alt="">
+        <img src="{% static 'assets/logo/logo-master.svg' %}" alt="">
       </span>
       <span class="brand-name">podsreunion.com</span>
     </a>
@@ -50,7 +51,7 @@
           <h2>AirPods Pro 2 parts</h2>
           <p>Compatible listings will appear here once the marketplace is connected.</p>
         </div>
-        <img src="assets/airpods/products/web/airpods-pro-2-with-case-front.png" alt="AirPods Pro with charging case">
+        <img src="{% static 'assets/airpods/products/web/airpods-pro-2-with-case-front.png' %}" alt="AirPods Pro with charging case">
       </div>
 
       <div class="preview-grid">
@@ -93,7 +94,7 @@
       <div class="choice-grid">
         <button class="choice-card" type="button" data-open-path="buyer">
           <span class="choice-visual">
-            <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+            <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
           </span>
           <span>
             <strong>I need an AirPod or case</strong>
@@ -102,7 +103,7 @@
         </button>
         <button class="choice-card" type="button" data-open-path="seller">
           <span class="choice-visual">
-            <img src="assets/airpods/products/web/airpods-3-with-case.png" alt="">
+            <img src="{% static 'assets/airpods/products/web/airpods-3-with-case.png' %}" alt="">
           </span>
           <span>
             <strong>I want to sell one</strong>
@@ -139,7 +140,7 @@
         <div class="buyer-part-grid" aria-label="Needed part">
           <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="left">
             <span class="buyer-part-image">
-              <img src="assets/airpods/earbuds/airpods-pro-2/left.png" alt="">
+              <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/left.png' %}" alt="">
             </span>
             <span>
               <strong>Left AirPod</strong>
@@ -148,7 +149,7 @@
           </button>
           <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="right">
             <span class="buyer-part-image">
-              <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+              <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
             </span>
             <span>
               <strong>Right AirPod</strong>
@@ -157,7 +158,7 @@
           </button>
           <button class="buyer-part-card" type="button" aria-pressed="false" data-buyer-part="case">
             <span class="buyer-part-image">
-              <img src="assets/airpods/cases/web/A2968-magsafe-lightning.png" alt="">
+              <img src="{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}" alt="">
             </span>
             <span>
               <strong>Charging case</strong>
@@ -179,55 +180,55 @@
         <div class="buyer-model-grid" aria-label="AirPods model">
           <button class="buyer-model-option" type="button" aria-pressed="true" data-buyer-model="AirPods Pro 1">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-pro-1-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-pro-1-with-case.png' %}" alt="">
             </span>
             <strong>AirPods Pro 1</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 2">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-pro-2-with-case-front.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-pro-2-with-case-front.png' %}" alt="">
             </span>
             <strong>AirPods Pro 2</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods Pro 3">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-pro-3-with-case-front.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-pro-3-with-case-front.png' %}" alt="">
             </span>
             <strong>AirPods Pro 3</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 1">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-1-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-1-with-case.png' %}" alt="">
             </span>
             <strong>AirPods 1</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 2">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-2-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-2-with-case.png' %}" alt="">
             </span>
             <strong>AirPods 2</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 3">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-3-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-3-with-case.png' %}" alt="">
             </span>
             <strong>AirPods 3</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-4-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-4-with-case.png' %}" alt="">
             </span>
             <strong>AirPods 4</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="AirPods 4 ANC">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-4-anc-with-case.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-4-anc-with-case.png' %}" alt="">
             </span>
             <strong>AirPods 4 ANC</strong>
           </button>
           <button class="buyer-model-option" type="button" aria-pressed="false" data-buyer-model="not-sure">
             <span class="buyer-model-image">
-              <img src="assets/airpods/products/web/airpods-pro-2-earbuds.png" alt="">
+              <img src="{% static 'assets/airpods/products/web/airpods-pro-2-earbuds.png' %}" alt="">
             </span>
             <strong>I am not sure</strong>
           </button>
@@ -291,7 +292,7 @@
           <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="left">
             <span class="seller-selected-mark" aria-hidden="true">✓</span>
             <span class="seller-part-image">
-              <img src="assets/airpods/earbuds/airpods-pro-2/left.png" alt="">
+              <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/left.png' %}" alt="">
             </span>
             <span>
               <strong>Left AirPod</strong>
@@ -301,7 +302,7 @@
           <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="right">
             <span class="seller-selected-mark" aria-hidden="true">✓</span>
             <span class="seller-part-image">
-              <img src="assets/airpods/earbuds/airpods-pro-2/right.png" alt="">
+              <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
             </span>
             <span>
               <strong>Right AirPod</strong>
@@ -311,7 +312,7 @@
           <button class="seller-part-card" type="button" aria-pressed="false" data-seller-part="case">
             <span class="seller-selected-mark" aria-hidden="true">✓</span>
             <span class="seller-part-image">
-              <img src="assets/airpods/cases/web/A2968-magsafe-lightning.png" alt="">
+              <img src="{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}" alt="">
             </span>
             <span>
               <strong>Charging case</strong>
@@ -420,58 +421,58 @@
 
 	    const airPodsModelImages = {
 	      'airpods-pro-1': {
-	        left: 'assets/airpods/earbuds/airpods-pro-1/left.png',
-	        right: 'assets/airpods/earbuds/airpods-pro-1/right.png',
-	        case: 'assets/airpods/cases/web/A2190.png'
+	        left: '{% static 'assets/airpods/earbuds/airpods-pro-1/left.png' %}',
+	        right: '{% static 'assets/airpods/earbuds/airpods-pro-1/right.png' %}',
+	        case: '{% static 'assets/airpods/cases/web/A2190.png' %}'
       },
       'airpods-pro-2': {
-        left: 'assets/airpods/earbuds/airpods-pro-2/left.png',
-        right: 'assets/airpods/earbuds/airpods-pro-2/right.png',
-        case: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-pro-2/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}'
       },
       'airpods-pro-3': {
-        left: 'assets/airpods/earbuds/airpods-pro-3/left.png',
-        right: 'assets/airpods/earbuds/airpods-pro-3/right.png',
-        case: 'assets/airpods/cases/web/A3122-magsafe.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-pro-3/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-pro-3/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A3122-magsafe.png' %}'
       },
       'airpods-1': {
-        left: 'assets/airpods/earbuds/airpods-1/left.png',
-        right: 'assets/airpods/earbuds/airpods-1/right.png',
-        case: 'assets/airpods/cases/web/A1602.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-1/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-1/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A1602.png' %}'
       },
       'airpods-2': {
-        left: 'assets/airpods/earbuds/airpods-2/left.png',
-        right: 'assets/airpods/earbuds/airpods-2/right.png',
-        case: 'assets/airpods/cases/web/A1938.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-2/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-2/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A1938.png' %}'
       },
       'airpods-3': {
-        left: 'assets/airpods/earbuds/airpods-3/left.png',
-        right: 'assets/airpods/earbuds/airpods-3/right.png',
-        case: 'assets/airpods/cases/web/A2566-magsafe.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-3/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-3/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A2566-magsafe.png' %}'
       },
       'airpods-4': {
-        left: 'assets/airpods/earbuds/airpods-4/left.png',
-        right: 'assets/airpods/earbuds/airpods-4/right.png',
-        case: 'assets/airpods/cases/web/A3058.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-4/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-4/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A3058.png' %}'
       },
       'airpods-4-anc': {
-        left: 'assets/airpods/earbuds/airpods-4-anc/left.png',
-        right: 'assets/airpods/earbuds/airpods-4-anc/right.png',
-        case: 'assets/airpods/cases/web/A3059-ANC.png'
+        left: '{% static 'assets/airpods/earbuds/airpods-4-anc/left.png' %}',
+        right: '{% static 'assets/airpods/earbuds/airpods-4-anc/right.png' %}',
+        case: '{% static 'assets/airpods/cases/web/A3059-ANC.png' %}'
 	      }
 	    };
 
 	    const chargingCaseImages = {
-	      A1602: 'assets/airpods/cases/web/A1602.png',
-	      A1938: 'assets/airpods/cases/web/A1938.png',
-	      'A2566-magsafe': 'assets/airpods/cases/web/A2566-magsafe.png',
-	      'A2897-lightning': 'assets/airpods/cases/web/A2897-lightning.png',
-	      A3058: 'assets/airpods/cases/web/A3058.png',
-	      'A3059-ANC': 'assets/airpods/cases/web/A3059-ANC.png',
-	      A2190: 'assets/airpods/cases/web/A2190.png',
-	      'A2700-magsafe-lightning': 'assets/airpods/cases/web/A2700-magsafe-lightning.png',
-	      'A2968-magsafe-lightning': 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
-	      'A3122-magsafe': 'assets/airpods/cases/web/A3122-magsafe.png'
+	      A1602: '{% static 'assets/airpods/cases/web/A1602.png' %}',
+	      A1938: '{% static 'assets/airpods/cases/web/A1938.png' %}',
+	      'A2566-magsafe': '{% static 'assets/airpods/cases/web/A2566-magsafe.png' %}',
+	      'A2897-lightning': '{% static 'assets/airpods/cases/web/A2897-lightning.png' %}',
+	      A3058: '{% static 'assets/airpods/cases/web/A3058.png' %}',
+	      'A3059-ANC': '{% static 'assets/airpods/cases/web/A3059-ANC.png' %}',
+	      A2190: '{% static 'assets/airpods/cases/web/A2190.png' %}',
+	      'A2700-magsafe-lightning': '{% static 'assets/airpods/cases/web/A2700-magsafe-lightning.png' %}',
+	      'A2968-magsafe-lightning': '{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}',
+	      'A3122-magsafe': '{% static 'assets/airpods/cases/web/A3122-magsafe.png' %}'
 	    };
 
     const airPodsModelOptions = [
@@ -479,55 +480,55 @@
         value: 'airpods-pro-1',
         label: 'AirPods Pro 1',
         meta: 'Pro earbuds',
-        image: 'assets/airpods/products/web/airpods-pro-1-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-pro-1-earbuds.png' %}'
       },
       {
         value: 'airpods-pro-2',
         label: 'AirPods Pro 2',
         meta: 'Pro earbuds',
-        image: 'assets/airpods/products/web/airpods-pro-2-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-pro-2-earbuds.png' %}'
       },
       {
         value: 'airpods-pro-3',
         label: 'AirPods Pro 3',
         meta: 'Pro earbuds',
-        image: 'assets/airpods/products/web/airpods-pro-3-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-pro-3-earbuds.png' %}'
       },
       {
         value: 'airpods-1',
         label: 'AirPods 1',
         meta: 'Original shape',
-        image: 'assets/airpods/products/web/airpods-1-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-1-earbuds.png' %}'
       },
       {
         value: 'airpods-2',
         label: 'AirPods 2',
         meta: 'Original shape',
-        image: 'assets/airpods/products/web/airpods-2-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-2-earbuds.png' %}'
       },
       {
         value: 'airpods-3',
         label: 'AirPods 3',
         meta: 'Short stem',
-        image: 'assets/airpods/products/web/airpods-3-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-3-earbuds.png' %}'
       },
       {
         value: 'airpods-4',
         label: 'AirPods 4',
         meta: 'Open fit',
-        image: 'assets/airpods/products/web/airpods-4-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-4-earbuds.png' %}'
       },
       {
         value: 'airpods-4-anc',
         label: 'AirPods 4 ANC',
         meta: 'Open fit ANC',
-        image: 'assets/airpods/products/web/airpods-4-anc-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-4-anc-earbuds.png' %}'
       },
       {
         value: 'unknown',
         label: 'I am not sure',
         meta: 'Identify later',
-        image: 'assets/airpods/products/web/airpods-pro-2-earbuds.png'
+        image: '{% static 'assets/airpods/products/web/airpods-pro-2-earbuds.png' %}'
       }
     ];
 
@@ -536,67 +537,67 @@
         value: '',
         label: 'I am not sure',
         meta: 'Identify later',
-        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+        image: '{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}'
       },
       {
         value: 'A1602',
         label: 'A1602',
         meta: 'AirPods 1/2 Lightning',
-        image: 'assets/airpods/cases/web/A1602.png'
+        image: '{% static 'assets/airpods/cases/web/A1602.png' %}'
       },
       {
         value: 'A1938',
         label: 'A1938',
         meta: 'AirPods 1/2 Wireless',
-        image: 'assets/airpods/cases/web/A1938.png'
+        image: '{% static 'assets/airpods/cases/web/A1938.png' %}'
       },
       {
         value: 'A2566-magsafe',
         label: 'A2566',
         meta: 'AirPods 3 MagSafe',
-        image: 'assets/airpods/cases/web/A2566-magsafe.png'
+        image: '{% static 'assets/airpods/cases/web/A2566-magsafe.png' %}'
       },
       {
         value: 'A2897-lightning',
         label: 'A2897',
         meta: 'AirPods 3 Lightning',
-        image: 'assets/airpods/cases/web/A2897-lightning.png'
+        image: '{% static 'assets/airpods/cases/web/A2897-lightning.png' %}'
       },
       {
         value: 'A3058',
         label: 'A3058',
         meta: 'AirPods 4',
-        image: 'assets/airpods/cases/web/A3058.png'
+        image: '{% static 'assets/airpods/cases/web/A3058.png' %}'
       },
       {
         value: 'A3059-ANC',
         label: 'A3059',
         meta: 'AirPods 4 ANC',
-        image: 'assets/airpods/cases/web/A3059-ANC.png'
+        image: '{% static 'assets/airpods/cases/web/A3059-ANC.png' %}'
       },
       {
         value: 'A2190',
         label: 'A2190',
         meta: 'AirPods Pro 1',
-        image: 'assets/airpods/cases/web/A2190.png'
+        image: '{% static 'assets/airpods/cases/web/A2190.png' %}'
       },
       {
         value: 'A2700-magsafe-lightning',
         label: 'A2700',
         meta: 'Pro 2 Lightning',
-        image: 'assets/airpods/cases/web/A2700-magsafe-lightning.png'
+        image: '{% static 'assets/airpods/cases/web/A2700-magsafe-lightning.png' %}'
       },
       {
         value: 'A2968-magsafe-lightning',
         label: 'A2968',
         meta: 'Pro 2 USB-C',
-        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png'
+        image: '{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}'
       },
       {
         value: 'A3122-magsafe',
         label: 'A3122',
         meta: 'Pro 3 USB-C',
-        image: 'assets/airpods/cases/web/A3122-magsafe.png'
+        image: '{% static 'assets/airpods/cases/web/A3122-magsafe.png' %}'
       }
     ];
 
@@ -642,19 +643,19 @@
     const sellerPartData = {
       left: {
         title: 'Left AirPod',
-        image: 'assets/airpods/earbuds/airpods-pro-2/left.png',
+        image: '{% static 'assets/airpods/earbuds/airpods-pro-2/left.png' %}',
         recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       right: {
         title: 'Right AirPod',
-        image: 'assets/airpods/earbuds/airpods-pro-2/right.png',
+        image: '{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}',
         recommendedPrice: '49 EUR',
         shots: ['Exterior side', 'Interior grille', 'Stem', 'Model number', 'Charging proof']
       },
       case: {
         title: 'Charging case',
-        image: 'assets/airpods/cases/web/A2968-magsafe-lightning.png',
+        image: '{% static 'assets/airpods/cases/web/A2968-magsafe-lightning.png' %}',
         recommendedPrice: '59 EUR',
         shots: ['Front closed', 'Back hinge', 'Inside open', 'Charging port', 'Model number', 'LED on', 'Charging proof']
       }

@@ -14,13 +14,13 @@ The favicon and app icon exports live in `favicons/`.
 Use these paths in HTML:
 
 ```html
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
-<link rel="shortcut icon" href="/assets/favicons/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
-<link rel="manifest" href="/assets/favicons/manifest.json">
-<meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicons/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/assets/favicons/favicon-96x96.png">
+<link rel="shortcut icon" href="/static/assets/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/assets/favicons/apple-icon-180x180.png">
+<link rel="manifest" href="/static/assets/favicons/manifest.json">
+<meta name="msapplication-config" content="/static/assets/favicons/browserconfig.xml">
 ```
 
 ## AirPods Case Images
