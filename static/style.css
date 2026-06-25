@@ -2088,8 +2088,8 @@ body > footer:not(.site-footer) a:hover {
   }
 
   .hero-product {
-    width: clamp(180px, 56vw, 240px);
-    max-height: 30svh;
+    width: clamp(150px, 46vw, 200px);
+    max-height: 24svh;
   }
 
   .hero-actions {
