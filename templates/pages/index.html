@@ -879,9 +879,7 @@
       }
 
       let duration = 0;
-      let targetTime = 0;
       let renderedTime = 0;
-      let frameRequest = null;
 
       function readDuration() {
         duration = heroScrollVideo.duration || duration || 0;
@@ -892,39 +890,28 @@
         return Math.max(window.innerHeight * 1.65, 1);
       }
 
-      function updateTargetTime() {
-        if (!readDuration()) {
-          return;
-        }
-
+      function scrollTargetTime() {
         const progress = clamp(window.scrollY / scrollDuration(), 0, 1);
-        targetTime = progress * duration;
-        requestAnimationFrameIfNeeded();
+        return progress * duration;
       }
 
-      function renderFrame() {
-        frameRequest = null;
-
+      function renderScrollFrame() {
         if (!readDuration()) {
+          window.requestAnimationFrame(renderScrollFrame);
           return;
         }
 
+        const targetTime = scrollTargetTime();
         const delta = targetTime - renderedTime;
 
         if (Math.abs(delta) < 0.01) {
           renderedTime = targetTime;
         } else {
-          renderedTime += delta * 0.16;
-          requestAnimationFrameIfNeeded();
+          renderedTime += delta * 0.18;
         }
 
         heroScrollVideo.currentTime = clamp(renderedTime, 0, duration);
-      }
-
-      function requestAnimationFrameIfNeeded() {
-        if (!frameRequest) {
-          frameRequest = window.requestAnimationFrame(renderFrame);
-        }
+        window.requestAnimationFrame(renderScrollFrame);
       }
 
       function initializeDuration() {
@@ -932,8 +919,6 @@
         heroScrollVideo.pause();
         heroScrollVideo.currentTime = 0;
         renderedTime = 0;
-        targetTime = 0;
-        updateTargetTime();
       }
 
       heroScrollVideo.pause();
@@ -946,8 +931,7 @@
         window.setTimeout(initializeDuration, 250);
       }
 
-      window.addEventListener('scroll', updateTargetTime, { passive: true });
-      window.addEventListener('resize', updateTargetTime);
+      window.requestAnimationFrame(renderScrollFrame);
     }
 
     initializeHeroScrollVideo();
