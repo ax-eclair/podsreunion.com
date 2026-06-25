@@ -207,6 +207,7 @@ h1 {
   min-height: 540px;
   display: grid;
   place-items: center;
+  overflow: hidden;
 }
 
 .hero-product img,
@@ -222,6 +223,7 @@ h1 {
   border: 0;
   background: transparent;
   pointer-events: none;
+  transform: scale(1.24);
 }
 
 .section-heading {
@@ -1955,7 +1957,8 @@ body > footer:not(.site-footer) a:hover {
     order: -1;
   }
 
-  .hero-product img {
+  .hero-product img,
+  .hero-product video {
     width: min(410px, 86vw);
     max-height: 430px;
   }
@@ -2062,9 +2065,14 @@ body > footer:not(.site-footer) a:hover {
     padding-bottom: 44px;
   }
 
-  .hero-product img {
+  .hero-product img,
+  .hero-product video {
     width: min(340px, 94vw);
     max-height: 360px;
+  }
+
+  .hero-product video {
+    width: min(340px, 76vw);
   }
 
   .section-heading h2 {
