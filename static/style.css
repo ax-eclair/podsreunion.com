@@ -154,8 +154,8 @@ body > header:not(.site-header) {
 }
 
 .hero {
-  width: min(1520px, calc(100% - 20px));
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
 }
 
 .eyebrow,
@@ -173,13 +173,13 @@ body > header:not(.site-header) {
 }
 
 .hero {
-  min-height: calc(100svh - 78px);
+  min-height: calc(100svh - 64px);
   padding: clamp(18px, 2.8vw, 42px);
   position: relative;
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   overflow: hidden;
-  border-radius: clamp(18px, 2.2vw, 32px);
+  border-radius: 0;
   background: var(--surface);
   isolation: isolate;
 }
@@ -2014,7 +2014,6 @@ body > footer:not(.site-footer) a:hover {
     flex-wrap: wrap;
   }
 
-  .hero,
   .steps-section,
   .trust-section,
   .supported-section,
@@ -2039,7 +2038,6 @@ body > footer:not(.site-footer) a:hover {
   .hero {
     min-height: calc(100svh - 130px);
     padding: 18px;
-    border-radius: 22px;
   }
 
   .hero-stage {
@@ -2060,9 +2058,9 @@ body > footer:not(.site-footer) a:hover {
   }
 
   .hero-actions {
-    width: auto;
-    max-width: none;
-    justify-self: stretch;
+    width: calc(100% - 10px);
+    max-width: 100%;
+    justify-self: start;
   }
 
   .hero-actions p {
