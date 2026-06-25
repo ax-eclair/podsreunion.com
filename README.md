@@ -55,6 +55,7 @@ make run
 ```
 
 Then visit [http://localhost:8100](http://localhost:8100).
+Use `make run PORT=8102` to run on a different local port.
 
 Run tests:
 

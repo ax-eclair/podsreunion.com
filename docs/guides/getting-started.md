@@ -38,6 +38,7 @@ make run
 ```
 
 Open [http://localhost:8100](http://localhost:8100).
+Use `make run PORT=8102` if that port is already busy.
 
 ## Tests
 

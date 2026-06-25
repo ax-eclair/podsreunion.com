@@ -1,1 +1,1 @@
-web: gunicorn podsreunion.wsgi --log-file -
+web: gunicorn podsreunion.wsgi --bind 0.0.0.0:${PORT:-8000} --log-file -
