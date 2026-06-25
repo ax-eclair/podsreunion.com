@@ -28,38 +28,54 @@ Every part is sold by its rightful, willing owner, properly unlocked. No grey-ar
 
 ## Tech stack (Phase 1)
 
-- HTML, CSS — no framework, no build step
-- [Formspree](https://formspree.io) — email-capture form (free tier)
-- GitHub Pages — static hosting on the custom domain
-- Inline SVG — illustrated AirPods scattered as an animated background
+- Django — serves the current public pages locally
+- Django templates and static files — no frontend build step
+- `uv` — Python dependency management
+- SQLite — default local database
+- Heroku-ready settings — foundation only, not deployed yet
 
 ## Run locally
 
-No build step. Just open the file:
+Install dependencies:
 
 ```bash
-git clone https://github.com/ax-eclair/podsreunion.com.git
-cd podsreunion.com
-open index.html
+uv sync
 ```
 
-Or serve it on a local port if you want a more realistic environment:
+Run migrations:
 
 ```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
+make migrate
 ```
+
+Start Django:
+
+```bash
+make run
+```
+
+Then visit [http://localhost:8100](http://localhost:8100).
+
+Run tests:
+
+```bash
+make test
+```
+
+See [Getting Started](docs/guides/getting-started.md) for more details.
 
 ## Project structure
 
 ```
 .
-├── index.html          # Landing page with email signup
-├── style.css           # All page styles + background animation
-├── logo.png            # Brand illustration
-├── impressum.html      # Legal notice (TMG §5)
-├── datenschutz.html    # Privacy policy (GDPR)
-├── CNAME               # Custom domain for GitHub Pages
+├── manage.py
+├── podsreunion/        # Django project and settings
+├── pages/              # Public page views
+├── templates/pages/    # Landing and legal templates
+├── static/             # CSS, favicons, logo, AirPods assets
+├── docs/               # Local setup, deployment notes, architecture docs
+├── tests/              # Small 200-response test suite
+├── CNAME               # Custom domain record from the static-site era
 └── README.md
 ```
 
