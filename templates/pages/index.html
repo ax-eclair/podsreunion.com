@@ -883,12 +883,17 @@
       let renderedTime = 0;
       let frameRequest = null;
 
+      function readDuration() {
+        duration = heroScrollVideo.duration || duration || 0;
+        return duration;
+      }
+
       function scrollDuration() {
         return Math.max(window.innerHeight * 1.65, 1);
       }
 
       function updateTargetTime() {
-        if (!duration) {
+        if (!readDuration()) {
           return;
         }
 
@@ -900,7 +905,7 @@
       function renderFrame() {
         frameRequest = null;
 
-        if (!duration) {
+        if (!readDuration()) {
           return;
         }
 
@@ -923,7 +928,7 @@
       }
 
       function initializeDuration() {
-        duration = heroScrollVideo.duration || 0;
+        readDuration();
         heroScrollVideo.pause();
         heroScrollVideo.currentTime = 0;
         renderedTime = 0;
@@ -937,6 +942,8 @@
         initializeDuration();
       } else {
         heroScrollVideo.addEventListener('loadedmetadata', initializeDuration, { once: true });
+        heroScrollVideo.addEventListener('canplay', initializeDuration, { once: true });
+        window.setTimeout(initializeDuration, 250);
       }
 
       window.addEventListener('scroll', updateTargetTime, { passive: true });
