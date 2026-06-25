@@ -221,6 +221,7 @@ h1 {
   display: block;
   border: 0;
   background: transparent;
+  pointer-events: none;
 }
 
 .section-heading {
