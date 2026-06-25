@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sell an AirPods part | PodsReunion</title>
+  <meta name="description" content="Submit one or more AirPods parts you want to sell on PodsReunion.">
+  <link rel="icon" type="image/png" href="{% static 'assets/favicons/favicon-32x32.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header class="site-header" aria-label="Primary">
+    <a class="brand" href="/" aria-label="PodsReunion home">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="{% static 'assets/logo/logo-master.svg' %}" alt="">
+      </span>
+      <span class="brand-name">podsreunion.com</span>
+    </a>
+
+    <nav class="header-nav" aria-label="Public pages">
+      <a href="/">Home</a>
+      <a href="/impressum.html">Legal Notice</a>
+      <a href="/datenschutz.html">Privacy Policy</a>
+    </nav>
+  </header>
+
+  <main class="sell-shell">
+    <section class="sell-intro" aria-labelledby="sell-title">
+      <p class="eyebrow">Seller submission</p>
+      <h1 id="sell-title">Submit the AirPods parts you want to sell.</h1>
+      <p class="intro-copy">
+        Add the details and required photos now. PodsReunion reviews every item before it can become a listing.
+      </p>
+      <img src="{% static 'assets/airpods/products/web/airpods-pro-2-with-case-front.png' %}" alt="AirPods Pro with charging case">
+    </section>
+
+    <section class="sell-panel" aria-label="Seller submission form">
+      {% if submission_saved %}
+        <div class="form-success" role="status">
+          <strong>Submission received.</strong>
+          <span>We will review your AirPods parts before listing them.</span>
+        </div>
+      {% endif %}
+
+      {% if errors %}
+        <div class="form-errors" role="alert">
+          <strong>Please check the highlighted fields.</strong>
+          <span>All required details and photo slots must be complete before submit.</span>
+          <ul class="form-error-list">
+            {% for field_name, error in errors.items %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <form class="sell-form" method="post" enctype="multipart/form-data" data-sell-form>
+        {% csrf_token %}
+        <input class="honeypot-field" type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="sell-progress" aria-label="Submission progress">
+          <span class="is-active" data-progress-step="1">Parts</span>
+          <span data-progress-step="2">Details</span>
+          <span data-progress-step="3">Photos</span>
+          <span data-progress-step="4">Contact</span>
+          <span data-progress-step="5">Review</span>
+        </div>
+
+        <section class="sell-step is-active" data-step="1">
+          <div class="step-heading">
+            <p class="modal-step">Step 1 of 5</p>
+            <h2>What do you want to sell?</h2>
+          </div>
+          {% if errors.parts %}<p class="field-error">{{ errors.parts }}</p>{% endif %}
+          <div class="sell-part-grid">
+            {% for part in parts %}
+              <label class="sell-part-card">
+                <input type="checkbox" name="parts" value="{{ part.value }}" {% if part.value in selected_parts %}checked{% endif %} data-part-toggle="{{ part.value }}">
+                <span>
+                  <strong>{{ part.label }}</strong>
+                  <small>One {{ part.label|lower }} per submission.</small>
+                </span>
+              </label>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="sell-step" data-step="2" hidden>
+          <div class="step-heading">
+            <p class="modal-step">Step 2 of 5</p>
+            <h2>Part details</h2>
+          </div>
+          {% for part in parts %}
+            <article class="item-section" data-part-section="{{ part.value }}">
+              <h3>{{ part.label }}</h3>
+              <div class="form-grid">
+                <label>
+                  <span>Model</span>
+                  <select name="item_{{ part.value }}_airpods_model">
+                    <option value="">Select a model</option>
+                    {% for model in part.models %}
+                      <option value="{{ model.id }}">{{ model.name }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+                <label>
+                  <span>Model number</span>
+                  <input type="text" name="item_{{ part.value }}_model_number" placeholder="e.g. A2699">
+                </label>
+                <label>
+                  <span>Condition</span>
+                  <select name="item_{{ part.value }}_condition">
+                    <option value="">Select condition</option>
+                    {% for value, label in condition_choices %}
+                      <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+                <label>
+                  <span>Asking price in EUR</span>
+                  <input type="number" name="item_{{ part.value }}_asking_price_eur" min="0.01" step="0.01" placeholder="49.00">
+                </label>
+              </div>
+              <label class="cleaning-check">
+                <input type="checkbox" name="item_{{ part.value }}_cleaned_and_ready">
+                <span>I confirm this item has been cleaned and is ready to ship.</span>
+              </label>
+              <p class="section-note">Photos must clearly show the item is clean. Submissions with visible dirt, earwax, or poor hygiene may be rejected.</p>
+            </article>
+          {% endfor %}
+        </section>
+
+        <section class="sell-step" data-step="3" hidden>
+          <div class="step-heading">
+            <p class="modal-step">Step 3 of 5</p>
+            <h2>Required photos</h2>
+          </div>
+          {% for part in parts %}
+            <article class="item-section" data-part-section="{{ part.value }}">
+              <h3>{{ part.label }}</h3>
+              <div class="photo-grid">
+                {% for slot, label in part.slots %}
+                  <label class="photo-slot">
+                    <input type="file" name="photo_{{ part.value }}_{{ slot }}" accept=".jpg,.jpeg,.png,.webp,.heic,.heif,image/jpeg,image/png,image/webp,image/heic,image/heif">
+                    <span>{{ forloop.counter }}</span>
+                    <strong>{{ label }}</strong>
+                  </label>
+                {% endfor %}
+              </div>
+            </article>
+          {% endfor %}
+        </section>
+
+        <section class="sell-step" data-step="4" hidden>
+          <div class="step-heading">
+            <p class="modal-step">Step 4 of 5</p>
+            <h2>Seller details</h2>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="seller_name" autocomplete="name" required>
+            </label>
+            <label>
+              <span>Contact email</span>
+              <input type="email" name="contact_email" autocomplete="email" required>
+            </label>
+            <label class="wide-field">
+              <span>Street address</span>
+              <input type="text" name="street_address" autocomplete="street-address" required>
+            </label>
+            <label>
+              <span>Postal code</span>
+              <input type="text" name="postal_code" autocomplete="postal-code" required>
+            </label>
+            <label>
+              <span>City</span>
+              <input type="text" name="city" autocomplete="address-level2" required>
+            </label>
+            <label>
+              <span>Country</span>
+              <input type="text" name="country" autocomplete="country-name" required>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <label>
+              <input type="checkbox" name="shipping_possible">
+              <span>Shipping is possible</span>
+            </label>
+            <label>
+              <input type="checkbox" name="local_handoff_possible">
+              <span>Local handoff is possible</span>
+            </label>
+          </div>
+          <label class="notes-field">
+            <span>Notes</span>
+            <textarea name="notes" rows="4" placeholder="Optional details for the PodsReunion review team"></textarea>
+          </label>
+        </section>
+
+        <section class="sell-step" data-step="5" hidden>
+          <div class="step-heading">
+            <p class="modal-step">Step 5 of 5</p>
+            <h2>Review and submit</h2>
+          </div>
+          <div class="review-box">
+            <strong>Before you submit</strong>
+            <p>Your full address stays admin-only. Every selected item will be reviewed separately before it can be listed.</p>
+          </div>
+        </section>
+
+        <div class="sell-actions">
+          <button class="secondary-action" type="button" data-prev-step hidden>Back</button>
+          <button class="full-action" type="button" data-next-step>Continue</button>
+          <button class="full-action" type="submit" data-submit-step hidden>Submit for review</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 PodsReunion</p>
+    <div>
+      <a href="/impressum.html">Legal Notice</a>
+      <a href="/datenschutz.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.querySelector('[data-sell-form]');
+    const steps = [...document.querySelectorAll('[data-step]')];
+    const progressSteps = [...document.querySelectorAll('[data-progress-step]')];
+    const prevButton = document.querySelector('[data-prev-step]');
+    const nextButton = document.querySelector('[data-next-step]');
+    const submitButton = document.querySelector('[data-submit-step]');
+    const partToggles = [...document.querySelectorAll('[data-part-toggle]')];
+    const partSections = [...document.querySelectorAll('[data-part-section]')];
+    let currentStep = 1;
+
+    function updatePartSections() {
+      const selectedParts = new Set(partToggles.filter((input) => input.checked).map((input) => input.value));
+      partSections.forEach((section) => {
+        const isSelected = selectedParts.has(section.dataset.partSection);
+        section.hidden = !isSelected;
+      });
+    }
+
+    function setStep(step) {
+      currentStep = Math.max(1, Math.min(5, step));
+      steps.forEach((section) => {
+        const isActive = Number(section.dataset.step) === currentStep;
+        section.hidden = !isActive;
+        section.classList.toggle('is-active', isActive);
+      });
+      progressSteps.forEach((item) => {
+        item.classList.toggle('is-active', Number(item.dataset.progressStep) <= currentStep);
+      });
+      prevButton.hidden = currentStep === 1;
+      nextButton.hidden = currentStep === 5;
+      submitButton.hidden = currentStep !== 5;
+      updatePartSections();
+    }
+
+    partToggles.forEach((input) => input.addEventListener('change', updatePartSections));
+    prevButton.addEventListener('click', () => setStep(currentStep - 1));
+    nextButton.addEventListener('click', () => setStep(currentStep + 1));
+    form.addEventListener('submit', updatePartSections);
+    setStep({% if errors %}5{% else %}1{% endif %});
+  </script>
+</body>
+</html>

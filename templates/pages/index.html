@@ -44,7 +44,7 @@
         <p>Find a matching AirPod or sell the spare one you already have.</p>
         <div class="hero-action-buttons">
           <button class="primary-action" type="button" data-open-path="buyer">I need an AirPod or case</button>
-          <button class="secondary-action" type="button" data-open-path="seller">I want to sell one</button>
+          <a class="secondary-action action-link" href="{% url 'seller_submission' %}">I want to sell one</a>
         </div>
       </div>
     </section>
@@ -246,7 +246,7 @@
       <p class="modal-copy">Choose the path that fits what you need today.</p>
 
       <div class="choice-grid">
-        <button class="choice-card" type="button" data-open-path="seller">
+        <a class="choice-card" href="{% url 'seller_submission' %}">
           <span class="choice-visual">
             <img src="{% static 'assets/airpods/products/web/airpods-3-with-case.png' %}" alt="">
           </span>
@@ -254,7 +254,7 @@
             <strong>I have a single AirPod</strong>
             <small>Publish a part and add trust badges later.</small>
           </span>
-        </button>
+        </a>
         <button class="choice-card" type="button" data-open-path="buyer">
           <span class="choice-visual">
             <img src="{% static 'assets/airpods/earbuds/airpods-pro-2/right.png' %}" alt="">
