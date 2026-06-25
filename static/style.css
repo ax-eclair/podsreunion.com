@@ -195,21 +195,27 @@ body > header:not(.site-header) {
 .hero h1 {
   margin: 0;
   width: min(72vw, 1120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(3.2rem, 7vw, 8rem);
   color: var(--text);
   font-size: clamp(6rem, 13.2vw, 14rem);
   font-weight: 800;
+  font-stretch: 115%;
   letter-spacing: 0;
   line-height: 0.82;
   text-align: center;
   white-space: nowrap;
+  transform: scaleX(1.12);
   z-index: 1;
 }
 
 .hero-product {
   position: absolute;
   z-index: 2;
-  width: clamp(300px, 32vw, 520px);
-  max-height: min(48svh, 500px);
+  width: clamp(260px, 26vw, 430px);
+  max-height: min(42svh, 430px);
   object-fit: contain;
   filter: drop-shadow(0 28px 30px rgba(0, 0, 0, 0.14));
 }
@@ -1991,12 +1997,14 @@ body > footer:not(.site-footer) a:hover {
 
   .hero h1 {
     width: min(86vw, 780px);
+    gap: clamp(2.2rem, 7vw, 4.8rem);
     font-size: clamp(5rem, 18vw, 9rem);
+    transform: scaleX(1.08);
   }
 
   .hero-product {
-    width: clamp(250px, 46vw, 360px);
-    max-height: 38svh;
+    width: clamp(220px, 38vw, 310px);
+    max-height: 34svh;
   }
 }
 
@@ -2041,12 +2049,20 @@ body > footer:not(.site-footer) a:hover {
 
   .hero h1 {
     width: 100%;
-    font-size: clamp(3.7rem, 19vw, 6.8rem);
+    gap: clamp(0.9rem, 6vw, 1.5rem);
+    font-size: clamp(3.45rem, 17vw, 6.2rem);
+    transform: scaleX(1.01);
   }
 
   .hero-product {
-    width: clamp(190px, 64vw, 270px);
-    max-height: 32svh;
+    width: clamp(170px, 54vw, 230px);
+    max-height: 28svh;
+  }
+
+  .hero-actions {
+    width: auto;
+    max-width: none;
+    justify-self: stretch;
   }
 
   .hero-actions p {
