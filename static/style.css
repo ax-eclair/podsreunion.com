@@ -459,6 +459,13 @@ body > header:not(.site-header) {
   background: #fdfdfc;
 }
 
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .primary-action:active,
 .secondary-action:active,
 .full-action:active,
@@ -748,6 +755,7 @@ body > footer:not(.site-footer) a:hover {
   background: var(--surface);
   color: var(--text);
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -1121,6 +1129,313 @@ body > footer:not(.site-footer) a:hover {
 .request-success span {
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.sell-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.sell-intro {
+  position: sticky;
+  top: 24px;
+}
+
+.sell-intro h1 {
+  max-width: 560px;
+}
+
+.sell-intro img {
+  width: min(380px, 100%);
+  margin-top: 30px;
+}
+
+.sell-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.form-success,
+.form-errors,
+.field-error {
+  border-radius: 8px;
+}
+
+.form-success,
+.form-errors {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  display: grid;
+  gap: 3px;
+}
+
+.form-success {
+  border: 1px solid #b7d9c2;
+  background: #edf8f0;
+  color: #14532d;
+}
+
+.form-success span {
+  color: #276749;
+}
+
+.form-errors,
+.field-error {
+  border: 1px solid #f0b8b8;
+  background: #fff1f1;
+  color: #991b1b;
+}
+
+.form-error-list {
+  margin: 8px 0 0 18px;
+}
+
+.field-error {
+  margin-top: 10px;
+  padding: 10px 12px;
+}
+
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+}
+
+.sell-progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.sell-progress span {
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.sell-progress span.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: #0f3c9c;
+}
+
+.sell-step {
+  display: grid;
+  gap: 18px;
+}
+
+.step-heading h2 {
+  margin-top: 8px;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.sell-part-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sell-part-card {
+  min-height: 126px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.sell-part-card:hover,
+.sell-part-card:has(input:checked) {
+  border-color: var(--accent);
+  background: #fbfdff;
+}
+
+.sell-part-card input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.sell-part-card strong,
+.sell-part-card small {
+  display: block;
+}
+
+.sell-part-card small {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.item-section {
+  padding: 18px;
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfbfa;
+}
+
+.item-section h3 {
+  font-size: 1.18rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid label,
+.notes-field {
+  display: grid;
+  gap: 7px;
+}
+
+.form-grid label > span,
+.notes-field > span {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.form-grid input,
+.form-grid select,
+.notes-field textarea {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  padding: 10px 12px;
+}
+
+.notes-field textarea {
+  resize: vertical;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.notes-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  outline: none;
+}
+
+.wide-field {
+  grid-column: 1 / -1;
+}
+
+.cleaning-check {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.cleaning-check input,
+.toggle-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.section-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.photo-grid .photo-slot {
+  min-height: 104px;
+  display: grid;
+  align-content: center;
+}
+
+.photo-slot input {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.toggle-row {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.toggle-row label {
+  min-height: 46px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.notes-field {
+  margin-top: 16px;
+}
+
+.review-box {
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfbfa;
+}
+
+.review-box p {
+  color: var(--muted);
+}
+
+.sell-actions {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr);
+  gap: 12px;
+}
+
+.sell-actions .full-action,
+.sell-actions .secondary-action {
+  width: 100%;
+  margin-top: 0;
 }
 
 .buyer-actions,
@@ -1981,6 +2296,15 @@ body > footer:not(.site-footer) a:hover {
     padding: 58px 0;
   }
 
+  .sell-shell {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .sell-intro {
+    position: static;
+  }
+
   .steps-grid,
   .trust-grid {
     grid-template-columns: 1fr;
@@ -2045,6 +2369,7 @@ body > footer:not(.site-footer) a:hover {
   .steps-section,
   .trust-section,
   .supported-section,
+  .sell-shell,
   .site-footer {
     width: min(100% - 16px, 1180px);
   }
@@ -2183,8 +2508,24 @@ body > footer:not(.site-footer) a:hover {
   .buyer-request-form,
   .seller-part-grid,
   .seller-model-grid,
+  .sell-part-grid,
+  .form-grid,
+  .photo-grid,
+  .toggle-row,
   .listing-form,
   .photo-checklist {
+    grid-template-columns: 1fr;
+  }
+
+  .sell-panel {
+    padding: 20px;
+  }
+
+  .sell-progress {
+    grid-template-columns: 1fr;
+  }
+
+  .sell-actions {
     grid-template-columns: 1fr;
   }
 

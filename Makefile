@@ -1,6 +1,7 @@
-.PHONY: sync run migrate test check lint format format-check collectstatic
+.PHONY: sync run migrate seed reseed-hard test check lint format format-check collectstatic
 
 PORT ?= 8100
+SQLITE_DB ?= db.sqlite3
 
 sync:
 	uv sync
@@ -10,6 +11,13 @@ run:
 
 migrate:
 	uv run python manage.py migrate
+
+seed: migrate
+	uv run python manage.py loaddata dev_superuser
+
+reseed-hard:
+	rm -f $(SQLITE_DB)
+	$(MAKE) seed
 
 test:
 	uv run pytest
